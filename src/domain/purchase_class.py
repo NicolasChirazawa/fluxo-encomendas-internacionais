@@ -30,16 +30,21 @@ class ProductPurchaseBuild:
         return self
 
     def setQuote(self):
-        self._productPurchase.quote = (ExchangeRateDataBuild()
+        exchangeRateData = (ExchangeRateDataBuild()
             .setDate(self._productPurchase.paymentDate)
             .setExchangeRate()
             .build()
         )
+        self._productPurchase.quote = exchangeRateData.exchangeRate
         return self
 
     def setPurchasePrice(self):
         ## Considerar aumento por método de pagamento
-        self._productPurchase.purchasePrice = (self._productPurchase.ienPrice + self._productPurchase.ienServiceTax) * self._productPurchase.quote 
+
+        count = 
+        self._productPurchase.purchasePrice = (
+            int(self._productPurchase.ienPrice) + int(self._productPurchase.ienServiceTax)
+            ) * self._productPurchase.quote 
         return self
 
     def build(self):

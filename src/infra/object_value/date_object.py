@@ -1,11 +1,10 @@
 import os
 import json
 
-DATABASE_ARCHIVE = os.path.abspath('figure_data.json')
+DATABASE_ARCHIVE = os.path.join(os.path.abspath(".."), "src", "application", "configuration", "configuration.json")
 
 DATABASE_DATA = open(DATABASE_ARCHIVE, "r")
 CONFIGURATION_JSON = json.load(DATABASE_DATA)
-
 DATABASE_DATA.close()
 
 class DateObjectValue:
@@ -23,9 +22,10 @@ class DateObjectBuild:
         self._dateObject = DateObjectValue()
 
     def setDate(self, date):    
-        format_array = format.split(self._dateObject.separator)
+
+        format_array = self._dateObject.format.split(self._dateObject.separator)
         self.validateFormat("date", format_array)
-            
+        
         self._dateObject.date = date
         return self
 
@@ -33,13 +33,13 @@ class DateObjectBuild:
         acronym = {
             'dd': 'day',
             'mm': 'month',
-            'yy': 'year'
+            'yyyy': 'year'
         }
 
         date_array = self._dateObject.date.split(self._dateObject.separator)
-        self.validateFormat(self, 'date', date_array)
+        self.validateFormat('date', date_array)
         format_array = self._dateObject.format.split(self._dateObject.separator)
-        self.validateFormat(self, 'format', format_array)
+        self.validateFormat('format', format_array)
 
         counter = 0
 
@@ -64,10 +64,10 @@ class DateObjectBuild:
     def validateEmptyValues (self, nameProperties):
 
         for nameProperty in nameProperties:
-            propertyValue = getattr(self._productData, nameProperty)
+            propertyValue = getattr(self._dateObject, nameProperty)
             if not propertyValue:
                 raise ValueError(nameProperty + " cannot be an empty value")
 
     def validateFormat (self, nameProperty, valueProperty):
-        if valueProperty.__len__ != 3:
+        if len(valueProperty) != 3:
             raise ValueError(nameProperty + " has an invalid date format")

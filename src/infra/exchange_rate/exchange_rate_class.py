@@ -1,4 +1,4 @@
-from infra.object_value.date_object import DateObjectBuild
+from src.infra.object_value.date_object import DateObjectBuild
 
 import json
 from urllib.request import urlopen, Request
@@ -18,7 +18,7 @@ class ExchangeRateDataBuild:
             .setElementsDate()
             .build()
             )
-        
+
         return self
 
     def setExchangeRate(self):
@@ -26,7 +26,13 @@ class ExchangeRateDataBuild:
 
         exchangeRateURL = "https://api.frankfurter.dev/v2/rates?base=JPY&quotes=BRL&date=" + dateFormatExchangeRate
 
-        request = Request(exchangeRateURL, headers={"Accept": "application/json"})
+        request = Request(
+            exchangeRateURL,
+            headers={
+                "Accept": "application/json",
+                "User-Agent": "Mozilla/5.0"
+            }
+        )
 
         with urlopen(request) as response:
             raw_data = response.read().decode("utf-8")
@@ -37,17 +43,4 @@ class ExchangeRateDataBuild:
         return self
 
     def build(self):
-        self.validate()
         return self._exchangeRateData
-
-    def validateEmptyValues(self, nameProperties):
-        for nameProperty in nameProperties:
-            propertyValue = getattr(
-                self._exchangeRateData,
-                nameProperty
-            )
-
-            if not propertyValue:
-                raise ValueError(
-                    nameProperty + " cannot be an empty value"
-                )
