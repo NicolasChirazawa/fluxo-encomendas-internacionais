@@ -1,4 +1,4 @@
-from src.infra.exchange_rate.exchange_rate_class import ExchangeRateDataBuild
+from domain.exchange_rate.exchange_rate_class import ExchangeRateDataBuild
 
 class ProductPurchase:
     def __init__(self):
@@ -41,7 +41,6 @@ class ProductPurchaseBuild:
     def setPurchasePrice(self):
         ## Considerar aumento por método de pagamento
 
-        count = 
         self._productPurchase.purchasePrice = (
             int(self._productPurchase.ienPrice) + int(self._productPurchase.ienServiceTax)
             ) * self._productPurchase.quote 
@@ -49,11 +48,11 @@ class ProductPurchaseBuild:
 
     def build(self):
         self.validate()
-        return self._productPurchase
+        return self._productPurchase.__dict__
 
     def validate(self):
         # Validação de valores null
-        self.validateEmptyValues(["paymentDate", "ienPrice", "ienServiceTax", "paymentMethod", "quote"])
+        self.validateEmptyValues(["paymentDate", "ienPrice", "ienServiceTax", "paymentMethod", "quote", "purchasePrice"])
 
     def validateEmptyValues (self, nameProperties):
 

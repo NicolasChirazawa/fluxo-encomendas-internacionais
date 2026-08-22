@@ -38,7 +38,7 @@ class ProductDataBuild:
 
     def build(self):
         self.validate()
-        return self._productData
+        return self._productData.__dict__
 
     def validate(self):
 

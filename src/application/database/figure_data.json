@@ -12,14 +12,6 @@
             "Preco_Iene": "6651",
             "Taxa_Servico_Iene": "500",
             "Metodo_Pagamento": "Nubank Credito"
-        },
-        "Frete": {
-            "Data_Limite": "11/09/2026",
-            "Data_Frete": "18/08/2026",
-            "Preco_Iene": "2553",
-            "Taxa_Servico_Iene": "0",
-            "Metodo_Pagamento": "Nubank Credito",
-            "Imposto_Reais": "0"
         }
     }
 }
