@@ -1,67 +1,72 @@
-from domain.exchange_rate.exchange_rate_class import ExchangeRateDataBuild
-from enum import Enum
-
-class Status(Enum):
-    NO_DATA = 'Sem informações'
-    AWAITING_PAYMENT = 'Esperando pagamento'
-    COMPLETED = 'Taxa de imposto foi paga'
+from infra.exchange_rate.exchange_rate_class import ExchangeRateDataBuild
+from domain.shipping.shipping_enum import ShippingStatus 
 
 class ProductShipping:
     def __init__(self):
-        self.dateLimit = ''
-        self.shippingDate = ''
-        self.ienPrice = ''
-        self.ienServiceTax = ''
-        self.paymentMethod = ''
-        self.quote = ''
-        self.shippingPrice = ''
-        self.status = Status.NO_DATA
+        self.shippingDateLimit = None
+        self.shippingCountry = None
+        self.shippingDate = None
+        self.shippingCurrencyPrice = None
+        self.shippingCurrencyServiceTax = 0
+        self.shippingPaymentMethod = None
+        self.shippingQuote = None
+        self.shippingPrice = None
+        self.shippingStatus = ShippingStatus.NO_DATA
 
 class ProductShippingBuild:
     def __init__(self):
         self._productShipping = ProductShipping()
 
-    def setDateLimit(self, dateLimit):        
-        self._productShipping.dateLimit = dateLimit
-        self.updateStatus(Status.AWAITING_PAYMENT)
+    def setShippingDateLimit(self, shippingDateLimit):        
+        self._productShipping.shippingDateLimit = shippingDateLimit
+        self.updateShippingStatus(ShippingStatus.AWAITING_PAYMENT)
+        return self
+
+    def setShippingCountry(self, shippingCountry):        
+        self._productShipping.shippingCountry = shippingCountry
         return self
 
     def setShippingDate(self, shippingDate):
         self._productShipping.shippingDate = shippingDate
-        self.updateStatus(Status.COMPLETED)
+        self.updateShippingStatus(ShippingStatus.COMPLETED)
         return self
 
-    def setIenPrice(self, ienPrice):
-        self._productShipping.ienPrice = ienPrice
+    def setShippingCurrencyPrice(self, shippingCurrencyPrice):
+        self._productShipping.shippingCurrencyPrice = shippingCurrencyPrice
         return self
 
-    def setIenServiceTax(self, ienServiceTax):
-        self._productShipping.ienServiceTax = ienServiceTax
+    def setShippingCurrencyServiceTax(self, shippingCurrencyServiceTax):
+        self._productShipping.shippingCurrencyServiceTax = shippingCurrencyServiceTax
         return self
 
-    def setPaymentMethod(self, paymentMethod):
-        self._productShipping.paymentMethod = paymentMethod
+    def setShippingPaymentMethod(self, shippingPaymentMethod):
+        self._productShipping.shippingPaymentMethod = shippingPaymentMethod
         return self
 
-    def setQuote(self):
+    def setShippingQuote(self):
         exchangeRateData = (ExchangeRateDataBuild()
             .setDate(self._productShipping.shippingDate)
+            .setCurrency(self._productShipping.shippingCountry)
             .setExchangeRate()
             .build()
         )
-        self._productShipping.quote = exchangeRateData.exchangeRate
+        self._productShipping.shippingQuote = exchangeRateData.exchangeRate
         return self
 
     def setShippingPrice(self):
         ## Considerar aumento por método de pagamento
 
-        self._productShipping.shippingPrice = (
-            int(self._productShipping.ienPrice) + int(self._productShipping.ienServiceTax)
-            ) * self._productShipping.quote 
+        calculate_price = ((                            
+            int(self._productShipping.shippingCurrencyPrice) + 
+            int(self._productShipping.shippingCurrencyServiceTax)
+            ) * self._productShipping.shippingQuote 
+        ) 
+
+        self._productShipping.shippingPrice = round(calculate_price, 2)
         return self
 
-    def updateStatus(self, status):
-        self._productShipping.status = status
+    def updateShippingStatus(self, shippingStatus):
+        self._productShipping.shippingStatus = shippingStatus
         return self
 
     def build(self):
@@ -69,18 +74,25 @@ class ProductShippingBuild:
         return self._productShipping.__dict__
 
     def validate(self):
-        if self._productShipping.status == Status.NO_DATA:
+        if self._productShipping.shippingStatus == ShippingStatus.NO_DATA:
             return
-        elif self._productShipping.status == Status.AWAITING_PAYMENT:
+        elif self._productShipping.shippingStatus == ShippingStatus.AWAITING_PAYMENT:
             self.validateEmptyValues(["dateLimit"])
-        elif self._productShipping.status == Status.COMPLETED:
-            self.validateEmptyValues(["dateLimit", "shippingDate", "ienPrice", "ienServiceTax", "paymentMethod", "quote", "shippingPrice"])
+        elif self._productShipping.shippingStatus == ShippingStatus.COMPLETED:
+            self.validateEmptyValues([
+                "shippingDateLimit", 
+                 "shippingCountry", 
+                 "shippingDate", 
+                 "shippingCurrencyPrice", 
+                 "shippingPaymentMethod", 
+                 "shippingPaymentMethod", 
+                 "shippingQuote", 
+                 "shippingPrice"
+                ])
         else:
             raise ValueError("Invalid status error")
 
-
     def validateEmptyValues (self, nameProperties):
-
         for nameProperty in nameProperties:
             propertyValue = getattr(self._productShipping, nameProperty)
             if not propertyValue:
