@@ -1,0 +1,41 @@
+{        
+    "ZEN001": {
+        "Nome_Figure": "Saya",
+        "MFC_Link": "https://myfigurecollection.net/item/3054167",
+        "Marca": "Good Smile Company",
+        "Linha": "Nendoroid",
+        "Escala": "Nendoroid",
+
+        "Compra": {
+            "Local_da_Compra": "Zenmarket",
+            "Pais_Local": "Japao",
+            "Data_do_Pagamento": "25/02/2026",
+            "Metodo_Pagamento": "Nubank Credito",
+            "Custos": {
+                "Preco": "6651",
+                "Taxa": "500"
+            }
+        },
+
+        "Frete": {
+            "Data_Limite_Pagamento": "09/09/2026",
+            "Pais_Local": "Japao",
+            "Data_do_Frete": "19/08/2026",
+            "Metodo_Pagamento": "Nubank Credito",
+            "Custos": {
+                "Preco": "2553",
+                "Taxa": "0"
+            }
+        },
+
+        "Imposto": {
+            "Data_Limite_Pagamento": "09/09/2026",
+            "Data_do_Imposto": "03/09/2026",
+            "Preco_Imposto": "200"
+        },
+        
+        "Entrega": {
+            "Teste": 123
+        }
+    }
+}

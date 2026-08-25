@@ -1,0 +1,6 @@
+{        
+    "format": "dd/mm/yyyy",
+    "separator": "/",
+    "compilation": "full",
+    "language": "pt_br"
+}
