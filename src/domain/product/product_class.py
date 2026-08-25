@@ -1,12 +1,10 @@
 class ProductData:
     def __init__(self):
-        self.figureName = ''
-        self.mfcLink = ''
-        self.brand = ''
-        self.productLine = ''
-        self.scale = ''
-        self.purchasePlace = '' 
-
+        self.figureName = None
+        self.mfcLink = None
+        self.brand = None
+        self.productLine = None
+        self.scale = None
 
 class ProductDataBuild:
     def __init__(self):
@@ -32,10 +30,6 @@ class ProductDataBuild:
         self._productData.scale = scale
         return self
 
-    def setPurchasePlace(self, purchasePlace):
-        self._productData.purchasePlace = purchasePlace
-        return self
-
     def build(self):
         self.validate()
         return self._productData.__dict__
@@ -43,7 +37,7 @@ class ProductDataBuild:
     def validate(self):
 
         # Validação de valores null
-        self.validateEmptyValues(["figureName", "mfcLink", "brand", "productLine", "scale", "purchasePlace"])
+        self.validateEmptyValues(["figureName", "mfcLink", "brand", "productLine", "scale"])
 
         # Validações específicas
         self.validateMFCLink("mfcLink")
