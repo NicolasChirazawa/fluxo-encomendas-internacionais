@@ -1,0 +1,117 @@
+{
+    "SHIPPING": {
+        "NO_DATA": "Sem informações",
+        "AWAITING_PAYMENT": "Esperando pagamento",
+        "COMPLETED": "Envio pago"
+    },
+    "TAX": {
+        "NO_DATA": "Sem informações",
+        "AWAITING_PAYMENT": "Esperando pagamento",
+        "COMPLETED": "Imposto pago"
+    },
+    "SUMMARIZED": {
+        "SHIPPING": {
+            "NO_DATA_STATUS": "Sem informações de envio",
+            "NO_DATA_STATUS_DATA": "Produto sem cadastro na aba de envio",
+            "AWAITING_PAYMENT_STATUS": "Esperando pagamento do envio",
+            "AWAITING_PAYMENT_STATUS_DATA": "Data limite de envio: "
+        },
+        "TAX": {
+            "NO_DATA_STATUS": "Sem informações de imposto",
+            "NO_DATA_STATUS_DATA": "Produto sem cadastro na aba de imposto",
+            "AWAITING_PAYMENT_STATUS": "Esperando pagamento do imposto",
+            "AWAITING_PAYMENT_STATUS_DATA": "Data limite de imposto: "
+        },
+        "DELIVERY": {
+            "NO_DATA_STATUS": "Sem informações de entrega",
+            "NO_DATA_STATUS_DATA": "Produto sem cadastro na aba de entrega",
+            "AWAITING_DELIVERY_STATUS": "Esperando entrega",
+            "COMPLETED_STATUS": "Entrega realizada",
+            "COMPLETED_STATUS_DATA": "Produto entregue no dia: "
+        }
+    },
+    "SPREADSHEET_RENAME": {
+        "SUMMARIZED_DATA": [
+            "Código",
+            "Nome da Figure", 
+            "Status", 
+            "Informações Adicionais"
+        ],
+        "FULL_DATA": [
+            "Código", 
+            "Nome da Figure", 
+            "Link do MFC", 
+            "Marca", 
+            "Linha", 
+            "Escala",
+            "Local de Compra", 
+            "Data de Pagamento", 
+            "Compra (Moeda do País)", 
+            "Taxa Compra (Moeda do País)", 
+            "Meio de pagamento", 
+            "Cota", 
+            "Preço de Compra (Real)",
+            "Data de Envio Limite", 
+            "País de envio",
+            "Data de envio",
+            "Envio (Moeda do País)", 
+            "Taxa Envio (Moeda do País)", 
+            "Meio de pagamento", 
+            "Cota", 
+            "Preço de Envio (Real)",
+            "Status de Envio",
+            "Data da Taxa Limite", 
+            "Data da Taxa", 
+            "Preço da Taxa", 
+            "Status da Taxa",
+            "Data de Entrega",
+            "Status da Entrega"
+        ],
+        "DATA": [
+            "Código", 
+            "Nome da Figure", 
+            "Link do MFC", 
+            "Marca", 
+            "Linha", 
+            "Escala"
+        ],
+        "PURCHASE_DATA": [
+            "Código", 
+            "Nome da Figure", 
+            "Local de Compra", 
+            "Data de Pagamento", 
+            "Preço Compra (Moeda do País)", 
+            "Taxa Compra (Moeda do País)", 
+            "Meio de pagamento", 
+            "Cota", 
+            "Preço de Compra (Real)"
+        ],
+        "SHIPPING_DATA": [
+            "Código", 
+            "Nome da Figure", 
+            "Data de Envio Limite", 
+            "País de envio",
+            "Data de envio",
+            "Preço Envio (Moeda do País)", 
+            "Taxa Envio (Moeda do País)", 
+            "Meio de pagamento", 
+            "Cota", 
+            "Preço de Envio (Real)",
+            "Status de Envio"
+        ],
+        "TAX_DATA": [
+            "Código",
+            "Nome da Figure", 
+            "Data da Taxa Limite", 
+            "Data da Taxa", 
+            "Preço Taxa", 
+            "Status da Taxa"
+        ],
+        "DELIVERY_DATA": [
+            "Código",
+            "Nome da Figure",
+            "Data de Entrega",
+            "Status da Entrega"
+        ]
+    }
+}
