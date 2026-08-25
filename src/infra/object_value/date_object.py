@@ -1,11 +1,6 @@
-import os
-import json
+from application.configuration.read_configuration import read_configuration_JSON
 
-DATABASE_ARCHIVE = os.path.join(os.path.abspath(".."), "src", "application", "configuration", "configuration.json")
-
-DATABASE_DATA = open(DATABASE_ARCHIVE, "r")
-CONFIGURATION_JSON = json.load(DATABASE_DATA)
-DATABASE_DATA.close()
+CONFIGURATION_JSON = read_configuration_JSON()
 
 class DateObjectValue:
     def __init__(self):
@@ -31,15 +26,15 @@ class DateObjectBuild:
 
     def setElementsDate(self):
         acronym = {
-            'dd': 'day',
-            'mm': 'month',
-            'yyyy': 'year'
+            "dd": "day",
+            "mm": "month",
+            "yyyy": "year"
         }
 
         date_array = self._dateObject.date.split(self._dateObject.separator)
-        self.validateFormat('date', date_array)
+        self.validateFormat("date", date_array)
         format_array = self._dateObject.format.split(self._dateObject.separator)
-        self.validateFormat('format', format_array)
+        self.validateFormat("format", format_array)
 
         counter = 0
 
