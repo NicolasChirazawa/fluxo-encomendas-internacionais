@@ -1,12 +1,14 @@
 from src.infra.object_value.date_object import DateObjectBuild
+from infra.object_value.country_currency import Currency
 
 import json
 from urllib.request import urlopen, Request
 
 class ExchangeRateData:
     def __init__(self):
-        self.date = ''
-        self.exchangeRate = ''
+        self.date = ""
+        self.currency = ""
+        self.exchangeRate = ""
 
 class ExchangeRateDataBuild:
     def __init__(self):
@@ -21,10 +23,17 @@ class ExchangeRateDataBuild:
 
         return self
 
-    def setExchangeRate(self):
-        dateFormatExchangeRate = self._exchangeRateData.date.year + '-' + self._exchangeRateData.date.month + '-' + self._exchangeRateData.date.day
+    def setCurrency(self, country):
+        country = country.upper()
+        self._exchangeRateData.currency = Currency[country].value
 
-        exchangeRateURL = "https://api.frankfurter.dev/v2/rates?base=JPY&quotes=BRL&date=" + dateFormatExchangeRate
+        return self
+
+    def setExchangeRate(self):
+        dateFormatExchangeRate = f"{self._exchangeRateData.date.year}-{self._exchangeRateData.date.month}-{self._exchangeRateData.date.day}"
+        currency = self._exchangeRateData.currency
+
+        exchangeRateURL = f"https://api.frankfurter.dev/v2/rates?base={currency}&quotes=BRL&date={dateFormatExchangeRate}"
 
         request = Request(
             exchangeRateURL,
@@ -39,7 +48,7 @@ class ExchangeRateDataBuild:
             
             data = json.loads(raw_data)
 
-        self._exchangeRateData.exchangeRate = data[0]['rate']
+        self._exchangeRateData.exchangeRate = data[0]["rate"]
         return self
 
     def build(self):
