@@ -147,13 +147,9 @@ O projeto está dividido em módulos:
 - **Create Tab**       → Responsável pela criação de modelos de aba de Excel;
 - **Create Report**    → Responsável pela criação do Excel;
 
-## Licença
-
-Não especificada.
-
 ## Contribuição
 
-PRs e sugestões são bem-vindos — abra uma issue para discutir antes de mudanças maiores.
+PRs e sugestões são bem-vindos, abra uma issue para discutir antes de mudanças maiores.
 
 <h2>Dúvidas</h2>
 
