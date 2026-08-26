@@ -127,11 +127,11 @@ Existem dois arquivos que são configuráveis no projeto.
 
 <h2 id="funcionalidades">Funcionalidades</h2>
 
-- Controle por etapas: Criação de diversos modelos de dados baseado no fluxo de uma encomenda;
-- Exportação de Excel: Geração de um Excel com base no tipo de compilação escolhida pelo usuário;
-- Tipos de compilação: Usuário pode escolher quais abas serão geradas no Excel conforme o seu interesse;
-- Mais de uma língua: O sistema fornece a geração do Excel com colunas em diferentes linguagens;
-- Conversão de moeda: É feito a conversão de moedas com base nos dados fornecidos pela Frankfurter API;
+- **Controle por etapas**: Criação de diversos modelos de dados baseado no fluxo de uma encomenda;
+- **Exportação de Excel**: Geração de um Excel com base no tipo de compilação escolhida pelo usuário;
+- **Tipos de compilação**: Usuário pode escolher quais abas serão geradas no Excel conforme o seu interesse;
+- **Mais de uma língua**: O sistema fornece a geração do Excel com colunas em diferentes linguagens;
+- **Conversão de moeda**: É feito a conversão de moedas com base nos dados fornecidos pela Frankfurter API;
 
 <h2 id="estrutura-do-projeto">Estrutura</h2>
 
