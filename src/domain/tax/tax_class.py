@@ -26,7 +26,7 @@ class ProductTaxBuild:
         return self
 
     def updateTaxStatus (self, taxStatus):
-        self._productTax.taxStatus = taxStatus
+        self._productTax.taxStatus = taxStatus.value
         return self
 
     def build (self):
@@ -34,16 +34,16 @@ class ProductTaxBuild:
         return self._productTax.__dict__
 
     def validate (self):
-        if self._productTax.taxStatus == TaxStatus.NO_DATA:
+        if self._productTax.taxStatus == TaxStatus.NO_DATA.value:
             return
-        elif self._productTax.taxStatus == TaxStatus.AWAITING_PAYMENT:
-            self.validateEmptyValues(["taxDateLimit"])
-        elif self._productTax.taxStatus == TaxStatus.COMPLETED:
-            self.validateEmptyValues(["taxDateLimit", "taxDate", "taxPrice"])
+        elif self._productTax.taxStatus == TaxStatus.AWAITING_PAYMENT.value:
+            self.validateNonEmptyValues(["taxDateLimit"])
+        elif self._productTax.taxStatus == TaxStatus.COMPLETED.value:
+            self.validateNonEmptyValues(["taxDateLimit", "taxDate", "taxPrice"])
         else:
             raise ValueError("Invalid status error")
 
-    def validateEmptyValues (self, nameProperties):
+    def validateNonEmptyValues (self, nameProperties):
 
         for nameProperty in nameProperties:
             propertyValue = getattr(self._productTax, nameProperty)

@@ -19,7 +19,7 @@ class ProductDeliveryBuild:
         return self
 
     def updateDeliveryStatus (self, deliveryStatus):
-        self._productDelivery.deliveryStatus = deliveryStatus
+        self._productDelivery.deliveryStatus = deliveryStatus.value
         return self
 
     def build (self):
@@ -28,16 +28,16 @@ class ProductDeliveryBuild:
 
     def validate (self):
 
-        if self._productDelivery.deliveryStatus == DeliveryStatus.NO_DATA:
+        if self._productDelivery.deliveryStatus == DeliveryStatus.NO_DATA.value:
             return
-        elif self._productDelivery.deliveryStatus == DeliveryStatus.AWAITING_DELIVERY:
+        elif self._productDelivery.deliveryStatus == DeliveryStatus.AWAITING_DELIVERY.value:
             return
-        elif self._productDelivery.deliveryStatus == DeliveryStatus.COMPLETED:
-            self.validateEmptyValues(["deliveryDate"])
+        elif self._productDelivery.deliveryStatus == DeliveryStatus.COMPLETED.value:
+            self.validateNonEmptyValues(["deliveryDate"])
         else:
             raise ValueError("Invalid status error")
 
-    def validateEmptyValues (self, nameProperties):
+    def validateNonEmptyValues (self, nameProperties):
         for nameProperty in nameProperties:
             propertyValue = getattr(self._productDelivery, nameProperty)
             if not propertyValue:

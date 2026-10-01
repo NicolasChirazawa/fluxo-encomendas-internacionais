@@ -66,7 +66,7 @@ class ProductShippingBuild:
         return self
 
     def updateShippingStatus(self, shippingStatus):
-        self._productShipping.shippingStatus = shippingStatus
+        self._productShipping.shippingStatus = shippingStatus.value
         return self
 
     def build(self):
@@ -74,12 +74,12 @@ class ProductShippingBuild:
         return self._productShipping.__dict__
 
     def validate(self):
-        if self._productShipping.shippingStatus == ShippingStatus.NO_DATA:
+        if self._productShipping.shippingStatus == ShippingStatus.NO_DATA.value:
             return
-        elif self._productShipping.shippingStatus == ShippingStatus.AWAITING_PAYMENT:
-            self.validateEmptyValues(["dateLimit"])
-        elif self._productShipping.shippingStatus == ShippingStatus.COMPLETED:
-            self.validateEmptyValues([
+        elif self._productShipping.shippingStatus == ShippingStatus.AWAITING_PAYMENT.value:
+            self.validateNonEmptyValues(["dateLimit"])
+        elif self._productShipping.shippingStatus == ShippingStatus.COMPLETED.value:
+            self.validateNonEmptyValues([
                 "shippingDateLimit", 
                  "shippingCountry", 
                  "shippingDate", 
@@ -92,7 +92,7 @@ class ProductShippingBuild:
         else:
             raise ValueError("Invalid status error")
 
-    def validateEmptyValues (self, nameProperties):
+    def validateNonEmptyValues (self, nameProperties):
         for nameProperty in nameProperties:
             propertyValue = getattr(self._productShipping, nameProperty)
             if not propertyValue:
