@@ -37,7 +37,7 @@ class ProductDataBuild:
     def validate(self):
 
         # Validação de valores null
-        self.validateEmptyValues(["figureName", "mfcLink", "brand", "productLine", "scale"])
+        self.validateEmptyValues(["figureName", "mfcLink"])
 
         # Validações específicas
         self.validateMFCLink("mfcLink")
