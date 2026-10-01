@@ -13,12 +13,12 @@ class ProductTaxBuild:
 
     def setDateLimit (self, taxDateLimit):        
         self._productTax.taxDateLimit = taxDateLimit
-        self.updateTaxStatus(TaxStatus.AWAITING_PAYMENT)
+        self._productTax.taxStatus = TaxStatus.AWAITING_PAYMENT
         return self
     
     def setTaxDate (self, taxDate):        
         self._productTax.taxDate = taxDate
-        self.updateTaxStatus(TaxStatus.COMPLETED)
+        self._productTax.taxStatus = TaxStatus.COMPLETED
         return self
 
     def setTaxPrice (self, taxPrice):        
@@ -30,6 +30,7 @@ class ProductTaxBuild:
         return self
 
     def build (self):
+        self.updateTaxStatus(self._productTax.taxStatus)
         self.validate()
         return self._productTax.__dict__
 
