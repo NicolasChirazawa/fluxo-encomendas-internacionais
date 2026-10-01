@@ -10,12 +10,12 @@ class ProductDeliveryBuild:
         self._productDelivery = ProductDelivery()
 
     def setDeliveryRegister (self):
-        self.updateDeliveryStatus(DeliveryStatus.AWAITING_DELIVERY)
+        self._productDelivery.deliveryStatus = DeliveryStatus.AWAITING_DELIVERY
         return self
     
     def setDeliveryDate (self, deliveryDate):
         self._productDelivery.deliveryDate = deliveryDate
-        self.updateDeliveryStatus(DeliveryStatus.COMPLETED)
+        self._productDelivery.deliveryStatus = DeliveryStatus.COMPLETED
         return self
 
     def updateDeliveryStatus (self, deliveryStatus):
@@ -23,6 +23,7 @@ class ProductDeliveryBuild:
         return self
 
     def build (self):
+        self.updateDeliveryStatus(self._productDelivery.deliveryStatus)
         self.validate()
         return self._productDelivery.__dict__
 

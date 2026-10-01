@@ -27,7 +27,7 @@ class ProductSummarizeBuild:
             self._productSummarize.status     = LANGUAGE["SHIPPING"]["AWAITING_PAYMENT_STATUS"]
             self._productSummarize.statusData = (
                 LANGUAGE["SHIPPING"]["AWAITING_PAYMENT_STATUS_DATA"] + 
-                product_shipping_data.shippingDateLimit
+                product_shipping_data["shippingDateLimit"]
             )
             return self
 
@@ -40,7 +40,7 @@ class ProductSummarizeBuild:
             self._productSummarize.status     = LANGUAGE["TAX"]["AWAITING_PAYMENT_STATUS"]
             self._productSummarize.statusData = (
                 LANGUAGE["TAX"]["AWAITING_PAYMENT_STATUS_DATA"] + 
-                product_shipping_data.shippingDateLimit
+                product_tax_data["taxDateLimit"]
             )
             return self
 

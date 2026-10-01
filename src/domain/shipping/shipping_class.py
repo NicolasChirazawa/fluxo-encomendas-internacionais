@@ -19,7 +19,7 @@ class ProductShippingBuild:
 
     def setShippingDateLimit(self, shippingDateLimit):        
         self._productShipping.shippingDateLimit = shippingDateLimit
-        self.updateShippingStatus(ShippingStatus.AWAITING_PAYMENT)
+        self._productShipping.shippingStatus = ShippingStatus.AWAITING_PAYMENT
         return self
 
     def setShippingCountry(self, shippingCountry):        
@@ -28,7 +28,7 @@ class ProductShippingBuild:
 
     def setShippingDate(self, shippingDate):
         self._productShipping.shippingDate = shippingDate
-        self.updateShippingStatus(ShippingStatus.COMPLETED)
+        self._productShipping.shippingStatus = ShippingStatus.COMPLETED
         return self
 
     def setShippingCurrencyPrice(self, shippingCurrencyPrice):
@@ -70,6 +70,7 @@ class ProductShippingBuild:
         return self
 
     def build(self):
+        self.updateShippingStatus(self._productShipping.shippingStatus)
         self.validate()
         return self._productShipping.__dict__
 
@@ -77,18 +78,18 @@ class ProductShippingBuild:
         if self._productShipping.shippingStatus == ShippingStatus.NO_DATA.value:
             return
         elif self._productShipping.shippingStatus == ShippingStatus.AWAITING_PAYMENT.value:
-            self.validateNonEmptyValues(["dateLimit"])
+            self.validateNonEmptyValues(["shippingDateLimit"])
         elif self._productShipping.shippingStatus == ShippingStatus.COMPLETED.value:
             self.validateNonEmptyValues([
                 "shippingDateLimit", 
-                 "shippingCountry", 
-                 "shippingDate", 
-                 "shippingCurrencyPrice", 
-                 "shippingPaymentMethod", 
-                 "shippingPaymentMethod", 
-                 "shippingQuote", 
-                 "shippingPrice"
-                ])
+                "shippingCountry", 
+                "shippingDate", 
+                "shippingCurrencyPrice", 
+                "shippingPaymentMethod", 
+                "shippingPaymentMethod", 
+                "shippingQuote", 
+                "shippingPrice"
+            ])
         else:
             raise ValueError("Invalid status error")
 
