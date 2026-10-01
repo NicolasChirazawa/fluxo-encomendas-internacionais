@@ -1,13 +1,20 @@
 {
-    "SHIPPING": {
-        "NO_DATA": "Sem informações",
-        "AWAITING_PAYMENT": "Esperando pagamento",
-        "COMPLETED": "Envio pago"
-    },
-    "TAX": {
-        "NO_DATA": "Sem informações",
-        "AWAITING_PAYMENT": "Esperando pagamento",
-        "COMPLETED": "Imposto pago"
+    "STATUS": {
+        "SHIPPING": {
+            "NO_DATA": "Sem informações",
+            "AWAITING_PAYMENT": "Esperando pagamento",
+            "COMPLETED": "Envio pago"
+        },
+        "TAX": {
+            "NO_DATA": "Sem informações",
+            "AWAITING_PAYMENT": "Esperando pagamento",
+            "COMPLETED": "Imposto pago"
+        },
+        "DELIVERY": {
+            "NO_DATA": "Sem informações",
+            "AWAITING_DELIVERY": "Esperando a entrega",
+            "COMPLETED": "Entrega realizada"
+        }
     },
     "SUMMARIZED": {
         "SHIPPING": {

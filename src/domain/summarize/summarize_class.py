@@ -18,12 +18,12 @@ class ProductSummarizeBuild:
         CONFIGURATION = read_configuration_JSON()
         LANGUAGE = read_language_JSON(CONFIGURATION["language"])["SUMMARIZED"]
         
-        if product_shipping_data["shippingStatus"] == ShippingStatus.NO_DATA:
+        if product_shipping_data["shippingStatus"] == ShippingStatus.NO_DATA.value:
             self._productSummarize.status     = LANGUAGE["SHIPPING"]["NO_DATA_STATUS"]
             self._productSummarize.statusData = LANGUAGE["SHIPPING"]["NO_DATA_STATUS_DATA"]
             return self
 
-        elif product_shipping_data["shippingStatus"] == ShippingStatus.AWAITING_PAYMENT: 
+        elif product_shipping_data["shippingStatus"] == ShippingStatus.AWAITING_PAYMENT.value:
             self._productSummarize.status     = LANGUAGE["SHIPPING"]["AWAITING_PAYMENT_STATUS"]
             self._productSummarize.statusData = (
                 LANGUAGE["SHIPPING"]["AWAITING_PAYMENT_STATUS_DATA"] + 
@@ -31,12 +31,12 @@ class ProductSummarizeBuild:
             )
             return self
 
-        elif product_tax_data["taxStatus"] == TaxStatus.NO_DATA: 
+        elif product_tax_data["taxStatus"] == TaxStatus.NO_DATA.value:
             self._productSummarize.status     = LANGUAGE["TAX"]["NO_DATA_STATUS"]
             self._productSummarize.statusData = LANGUAGE["TAX"]["NO_DATA_STATUS_DATA"]
             return self
         
-        elif product_tax_data["taxStatus"] == TaxStatus.AWAITING_PAYMENT:
+        elif product_tax_data["taxStatus"] == TaxStatus.AWAITING_PAYMENT.value:
             self._productSummarize.status     = LANGUAGE["TAX"]["AWAITING_PAYMENT_STATUS"]
             self._productSummarize.statusData = (
                 LANGUAGE["TAX"]["AWAITING_PAYMENT_STATUS_DATA"] + 
@@ -44,20 +44,20 @@ class ProductSummarizeBuild:
             )
             return self
 
-        elif product_delivery_data["deliveryStatus"] == DeliveryStatus.NO_DATA: 
+        elif product_delivery_data["deliveryStatus"] == DeliveryStatus.NO_DATA.value:
             self._productSummarize.status     = LANGUAGE["DELIVERY"]["NO_DATA_STATUS"]
             self._productSummarize.statusData = LANGUAGE["DELIVERY"]["NO_DATA_STATUS_DATA"]
             return self
         
-        elif product_delivery_data["deliveryStatus"] == DeliveryStatus.AWAITING_DELIVERY:
+        elif product_delivery_data["deliveryStatus"] == DeliveryStatus.AWAITING_DELIVERY.value:
             self._productSummarize.status     = LANGUAGE["DELIVERY"]["AWAITING_DELIVERY_STATUS"]
             return self
 
-        elif product_delivery_data["deliveryStatus"] == DeliveryStatus.COMPLETED:
+        elif product_delivery_data["deliveryStatus"] == DeliveryStatus.COMPLETED.value:
             self._productSummarize.status     = LANGUAGE["DELIVERY"]["COMPLETED_STATUS"]
             self._productSummarize.statusData = (
                 LANGUAGE["DELIVERY"]["COMPLETED_STATUS_DATA"] + 
-                product_delivery_data.deliveryDate
+                product_delivery_data["deliveryDate"]
             )
             return self
 
