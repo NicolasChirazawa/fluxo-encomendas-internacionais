@@ -1,41 +1,41 @@
 {        
-    "ZEN001": {
-        "Nome_Figure": "Saya",
-        "MFC_Link": "https://myfigurecollection.net/item/3054167",
-        "Marca": "Good Smile Company",
-        "Linha": "Nendoroid",
-        "Escala": "Nendoroid",
+    "XXX001": {
+        "Nome_Figure": "Exemplo de nome",
+        "MFC_Link": "https://myfigurecollection.net/item/EXEMPLO",
+        "Marca": "Exemplo de marca",
+        "Linha": "Exemplo de linha",
+        "Escala": "Exemplo de escala",
 
         "Compra": {
-            "Local_da_Compra": "Zenmarket",
-            "Pais_Local": "Japao",
-            "Data_do_Pagamento": "25/02/2026",
-            "Metodo_Pagamento": "Nubank Credito",
+            "Local_da_Compra": "Exemplo de loja/proxy",
+            "Pais_Local": "Exemplo de local",
+            "Data_do_Pagamento": "DD/MM/YYYY", /* Este exemplo de data é um formato que pode ser alterado nas configurações 'src/app/configuration/configuration.json'*/ 
+            "Metodo_Pagamento": "Exemplo de método de pagamento",
             "Custos": {
-                "Preco": "6651",
-                "Taxa": "500"
+                "Preco": "Exemplo de valor",
+                "Taxa": "Exemplo de taxa"
             }
         },
 
         "Frete": {
-            "Data_Limite_Pagamento": "09/09/2026",
-            "Pais_Local": "Japao",
-            "Data_do_Frete": "19/08/2026",
-            "Metodo_Pagamento": "Nubank Credito",
+            "Data_Limite_Pagamento": "DD/MM/YYYY",
+            "Pais_Local": "Exemplo de local",
+            "Data_do_Frete": "DD/MM/YYYY",
+            "Metodo_Pagamento": "Exemplo de método de pagamento",
             "Custos": {
-                "Preco": "2553",
-                "Taxa": "0"
+                "Preco": "Exemplo de valor",
+                "Taxa": "Exemplo de taxa"
             }
         },
 
         "Imposto": {
-            "Data_Limite_Pagamento": "09/09/2026",
-            "Data_do_Imposto": "03/09/2026",
-            "Preco_Imposto": "200"
+            "Data_Limite_Pagamento": "DD/MM/YYYY",
+            "Data_do_Imposto": "DD/MM/YYYY",
+            "Preco_Imposto": "Exemplo de imposto"
         },
         
         "Entrega": {
-            "Data_da_Entrega": "09/09/2026"
+            "Data_da_Entrega": "DD/MM/YYYY"
         }
     }
 }
