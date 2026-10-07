@@ -11,17 +11,17 @@ from application.language.read_language import read_language_JSON
 
 from enum import Enum
 
-class Tab(Enum):
-    SUMMARIZED_DATA = "Informações Base"
-    FULL_DATA       = "Dados Completos"
-    DATA            = "Dados do Produto"
-    PURCHASE_DATA   = "Dados da Compra"
-    SHIPPING_DATA   = "Dados do Frete"
-    TAX_DATA        = "Dados da Taxa"
-    DELIVERY_DATA   = "Dados da Entrega"
-
 CONFIGURATION_JSON = read_configuration_JSON()
 LANGUAGE_JSON      = read_language_JSON(CONFIGURATION_JSON['language'])
+
+class Tab(Enum):
+    SUMMARIZED_DATA = LANGUAGE_JSON["SPREADSHEET"]["SUMMARIZED_DATA"]["TAB_NAME"]
+    FULL_DATA       = LANGUAGE_JSON["SPREADSHEET"]["FULL_DATA"]["TAB_NAME"]
+    DATA            = LANGUAGE_JSON["SPREADSHEET"]["DATA"]["TAB_NAME"]
+    PURCHASE_DATA   = LANGUAGE_JSON["SPREADSHEET"]["PURCHASE_DATA"]["TAB_NAME"]
+    SHIPPING_DATA   = LANGUAGE_JSON["SPREADSHEET"]["SHIPPING_DATA"]["TAB_NAME"]
+    TAX_DATA        = LANGUAGE_JSON["SPREADSHEET"]["TAX_DATA"]["TAB_NAME"]
+    DELIVERY_DATA   = LANGUAGE_JSON["SPREADSHEET"]["DELIVERY_DATA"]["TAB_NAME"]
 
 class CreateTabFactory:
     def create(self, data, tab):
