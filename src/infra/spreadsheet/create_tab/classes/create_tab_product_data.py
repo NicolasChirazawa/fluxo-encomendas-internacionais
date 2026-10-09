@@ -1,27 +1,28 @@
+from application.configuration.read_configuration import read_configuration_JSON
+from application.language.read_language import read_language_JSON
+
 from infra.object_value.spreadsheet_template import SpreadsheetTemplateBuild
 
-class TabShippingData:
+CONFIGURATION_JSON = read_configuration_JSON()
+LANGUAGE_JSON      = read_language_JSON(CONFIGURATION_JSON['language'])
+
+class TabProductData:
     def __init__(self):
         self.type = ""
         self.tabName = ""
         self.newOrderColumns = [
             "code", 
-            "figureName",
-            "shippingDateLimit", 
-            "shippingCountry", 
-            "shippingDate", 
-            "shippingCurrencyPrice", 
-            "shippingCurrencyServiceTax", 
-            "shippingPaymentMethod", 
-            "shippingQuote", 
-            "shippingPrice", 
-            "shippingStatus"
+            "figureName", 
+            "mfcLink", 
+            "brand",
+            "productLine", 
+            "scale"
         ]
         self.dataframe = ""
 
-class TabShippingDataBuilder:
+class TabProcuctDataBuilder:
     def __init__(self):
-        self._tabFullData = TabShippingData()
+        self._tabFullData = TabProductData()
 
     def setType (self, type):
         self._tabFullData.type = type
@@ -31,12 +32,12 @@ class TabShippingDataBuilder:
         self._tabFullData.tabName = tabName
         return self
 
-    def setDataframe (self, data, language):
+    def setDataframe (self, data):
         self._tabFullData.dataframe = (
             SpreadsheetTemplateBuild()
             .setSpreadsheetTemplate(data)
             .order(self._tabFullData.newOrderColumns)
-            .rename(language['SPREADSHEET_RENAME'][self._tabFullData.type])
+            .rename(LANGUAGE_JSON['SPREADSHEET'][self._tabFullData.type]["COLUMNS"])
             .build()
         )
         return self
