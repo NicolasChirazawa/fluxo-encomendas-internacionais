@@ -78,9 +78,9 @@
                 "Status da Taxa",
                 "Data de Entrega",
                 "Status da Entrega"
-            ],
+            ]
         },
-        "DATA": {
+        "PRODUCT_DATA": {
             "TAB_NAME": "Dados do Produto",
             "COLUMNS": [
                 "Código", 
@@ -103,7 +103,7 @@
                 "Meio de pagamento", 
                 "Cota", 
                 "Preço de Compra (Real)"
-            ],
+            ]
         },
         "SHIPPING_DATA": {
             "TAB_NAME": "Dados do Frete",

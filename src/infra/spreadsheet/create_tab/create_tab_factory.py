@@ -17,7 +17,7 @@ LANGUAGE_JSON      = read_language_JSON(CONFIGURATION_JSON['language'])
 class Tab(Enum):
     SUMMARIZED_DATA = LANGUAGE_JSON["SPREADSHEET"]["SUMMARIZED_DATA"]["TAB_NAME"]
     FULL_DATA       = LANGUAGE_JSON["SPREADSHEET"]["FULL_DATA"]["TAB_NAME"]
-    DATA            = LANGUAGE_JSON["SPREADSHEET"]["DATA"]["TAB_NAME"]
+    PRODUCT_DATA    = LANGUAGE_JSON["SPREADSHEET"]["PRODUCT_DATA"]["TAB_NAME"]
     PURCHASE_DATA   = LANGUAGE_JSON["SPREADSHEET"]["PURCHASE_DATA"]["TAB_NAME"]
     SHIPPING_DATA   = LANGUAGE_JSON["SPREADSHEET"]["SHIPPING_DATA"]["TAB_NAME"]
     TAX_DATA        = LANGUAGE_JSON["SPREADSHEET"]["TAX_DATA"]["TAB_NAME"]
@@ -31,72 +31,35 @@ class CreateTabFactory:
         except KeyError:
             raise ValueError("Invalid enum tab value")
 
+        tabData = None
+
         if enum_tab == Tab.SUMMARIZED_DATA:
-            tabData = (
-                TabSummarizedDataBuild()
-                .setType(enum_tab.name)
-                .setTabName(enum_tab.value)
-                .setDataframe(data, LANGUAGE_JSON)
-                .build()
-            )
-            return tabData
-
+            tabData = TabSummarizedDataBuild()
+            
         elif enum_tab == Tab.FULL_DATA:
-            tabData = (
-                TabFullDataBuild()
-                .setType(enum_tab.name)
-                .setTabName(enum_tab.value)
-                .setDataframe(data, LANGUAGE_JSON)
-                .build()
-            )
-            return tabData
+            tabData = TabFullDataBuild()
 
-        elif enum_tab == Tab.DATA:
-            tabData = (
-                TabProcuctDataBuilder()
-                .setType(enum_tab.name)
-                .setTabName(enum_tab.value)
-                .setDataframe(data, LANGUAGE_JSON)
-                .build()
-            )
-            return tabData
+        elif enum_tab == Tab.PRODUCT_DATA:
+            tabData = TabProcuctDataBuilder()
 
         elif enum_tab == Tab.PURCHASE_DATA:
-            tabData = (
-                TabPurchaseDataBuilder()
-                .setType(enum_tab.name)
-                .setTabName(enum_tab.value)
-                .setDataframe(data, LANGUAGE_JSON)
-                .build()
-            )
-            return tabData
+            tabData = TabPurchaseDataBuilder()
 
         elif enum_tab == Tab.SHIPPING_DATA:
-            tabData = (
-                TabShippingDataBuilder()
-                .setType(enum_tab.name)
-                .setTabName(enum_tab.value)
-                .setDataframe(data, LANGUAGE_JSON)
-                .build()
-            )
-            return tabData
+            tabData = TabShippingDataBuilder()
 
         elif enum_tab == Tab.TAX_DATA:
-            tabData = (
-                TabTaxDataBuilder()
-                .setType(enum_tab.name)
-                .setTabName(enum_tab.value)
-                .setDataframe(data, LANGUAGE_JSON)
-                .build()
-            )
-            return tabData
+            tabData = TabTaxDataBuilder()
 
         elif enum_tab == Tab.DELIVERY_DATA:
-            tabData = (
-                TabDeliveryDataBuilder()
-                .setType(enum_tab.name)
-                .setTabName(enum_tab.value)
-                .setDataframe(data, LANGUAGE_JSON)
-                .build()
-            )
-            return tabData    
+            tabData = TabDeliveryDataBuilder()    
+
+        tabData = (
+            tabData
+            .setType(enum_tab.name)
+            .setTabName(enum_tab.value)
+            .setDataframe(data)
+            .build()
+        )
+            
+        return tabData
