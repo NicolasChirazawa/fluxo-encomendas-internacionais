@@ -1,5 +1,5 @@
 from enum import Enum
 
-class ExchangeRate (Enum):
+class ExchangeRateMethod (Enum):
     LOCAL = True
     SQL   = True
