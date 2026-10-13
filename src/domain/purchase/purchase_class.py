@@ -42,7 +42,8 @@ class ProductPurchaseBuild:
     def setPurchaseQuote(self):
         exchangeRateData = (ExchangeRateDataBuild()
             .setDate(self._productPurchase.purchasePaymentDate)
-            .setCurrency(self._productPurchase.purchaseCountry)
+            .setOriginCurrency()
+            .setShippingCurrency(self._productPurchase.purchaseCountry)
             .setExchangeRate()
             .build()
         )

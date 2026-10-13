@@ -46,7 +46,8 @@ class ProductShippingBuild:
     def setShippingQuote(self):
         exchangeRateData = (ExchangeRateDataBuild()
             .setDate(self._productShipping.shippingDate)
-            .setCurrency(self._productShipping.shippingCountry)
+            .setOriginCurrency()
+            .setShippingCurrency(self._productShipping.shippingCountry)
             .setExchangeRate()
             .build()
         )

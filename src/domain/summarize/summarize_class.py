@@ -5,6 +5,9 @@ from domain.delivery.delivery_enum import DeliveryStatus
 from application.configuration.read_configuration import read_configuration_JSON
 from application.language.read_language import read_language_JSON
 
+CONFIGURATION = read_configuration_JSON()
+LANGUAGE = read_language_JSON(CONFIGURATION["LANGUAGE"])["SUMMARIZED"]
+
 class ProductSummarize:
     def __init__(self):
         self.status = ""
@@ -15,9 +18,6 @@ class ProductSummarizeBuild:
         self._productSummarize = ProductSummarize()
 
     def setStatus(self, product_shipping_data, product_tax_data, product_delivery_data):        
-        CONFIGURATION = read_configuration_JSON()
-        LANGUAGE = read_language_JSON(CONFIGURATION["language"])["SUMMARIZED"]
-        
         if product_shipping_data["shippingStatus"] == ShippingStatus.NO_DATA.value:
             self._productSummarize.status     = LANGUAGE["SHIPPING"]["NO_DATA_STATUS"]
             self._productSummarize.statusData = LANGUAGE["SHIPPING"]["NO_DATA_STATUS_DATA"]
