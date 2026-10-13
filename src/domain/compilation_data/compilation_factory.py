@@ -1,5 +1,5 @@
 from domain.compilation_data.compilation_class import compilationDataBuild
-from infra.object_value.compilation import Compilation
+from infra.enum.compilation import Compilation
 
 class CompilationDataFactory:
 
