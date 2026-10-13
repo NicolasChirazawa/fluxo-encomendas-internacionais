@@ -1,7 +1,7 @@
 from application.configuration.read_configuration import read_configuration_JSON
 from application.language.read_language import read_language_JSON
 
-from infra.object_value.spreadsheet_template import SpreadsheetTemplateBuild
+from infra.spreadsheet.spreadsheet_template import SpreadsheetTemplateBuild
 
 CONFIGURATION_JSON = read_configuration_JSON()
 LANGUAGE_JSON      = read_language_JSON(CONFIGURATION_JSON['LANGUAGE'])

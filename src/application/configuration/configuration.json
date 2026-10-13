@@ -5,6 +5,6 @@
         "FORMAT": "dd/mm/yyyy",
         "SEPARATOR": "/"
     },
-    "compilation": "full",
-    "database": "local"
+    "DATABASE": "local",
+    "compilation": "full"
 }
