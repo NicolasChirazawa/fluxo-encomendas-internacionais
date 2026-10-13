@@ -1,7 +1,9 @@
 from application.configuration.read_configuration import read_configuration_JSON 
 from application.database.read_database import read_database_JSON 
+
 from infra.object_value.date_object import DateObjectBuild
 from infra.enum.country_currency import Currency
+from infra.exchange_rate.exchange_rate_factory import ExchangeRateMethodFactory
 
 import json
 from urllib.request import urlopen, Request
@@ -55,9 +57,11 @@ class ExchangeRateDataBuild:
             self._exchangeRateData.date.day
         )
 
-        if 
+        exchangeRate = ExchangeRateMethodFactory.getData()
 
-        exchangeRate = self.searchFrankFurterAPI(origenCurrency, shippingCurrency, dateFormatExchangeRate)
+        if exchangeRate == None:
+            exchangeRate = self.searchFrankFurterAPI(origenCurrency, shippingCurrency, dateFormatExchangeRate)
+            ExchangeRateMethodFactory.setData(exchangeRate)
 
         self._exchangeRateData.exchangeRate = exchangeRate
         return self
