@@ -53,7 +53,6 @@ class DateObjectBuild:
         return self._dateObject
 
     def validate(self):
-        # Validação de valores null
         self.validateEmptyValues(["date", "separator", "format", "day", "month", "year"])
 
     def validateEmptyValues (self, nameProperties):
