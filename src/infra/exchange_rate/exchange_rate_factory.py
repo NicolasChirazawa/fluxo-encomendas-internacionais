@@ -30,11 +30,8 @@ class ExchangeRateDataFactory:
         ExchangeRateConfig = CONFIGURATION_JSON["DATABASE"].upper()
 
         if ExchangeRateConfig == ExchangeRateMethod.LOCAL.value:
-            return (
-                ProductDataBuild()
-                .setFigureName(product_info["Nome_Figure"])
-                .build()
-            )
+            exchange_rate_cache.set(origenCurrency, shippingCurrency, dateFormatExchangeRate, exchangeRate)
+            return
         
         elif ExchangeRateConfig == ExchangeRateMethod.SQL.value:
             ## It’s necessary to develop a SQL database solution here.
