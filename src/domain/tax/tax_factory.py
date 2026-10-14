@@ -6,9 +6,9 @@ class ProductTaxFactory:
         has_tax = product_info.get("Imposto", None)
         if not has_tax:
             return (
-                    ProductTaxBuild()
-                    .build()
-                )
+                ProductTaxBuild()
+                .build()
+            )
 
         has_date_tax = product_info["Imposto"].get("Data_do_Imposto", None)
         if not has_date_tax:

@@ -1,7 +1,7 @@
 import os
 import json
 
-def readJSON(path):
+def readJSON (path):
     DATABASE_ARCHIVE = os.path.abspath(path)
 
     with open(DATABASE_ARCHIVE, "r", encoding="utf-8") as database_file:

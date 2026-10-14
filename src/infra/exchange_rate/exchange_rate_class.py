@@ -3,7 +3,7 @@ from application.database.read_database import read_database_JSON
 
 from infra.object_value.date_object import DateObjectBuild
 from infra.enum.country_currency import Currency
-from infra.exchange_rate.exchange_rate_factory import ExchangeRateMethodFactory
+from infra.exchange_rate.exchange_rate_factory import ExchangeRateDataFactory
 
 import json
 from urllib.request import urlopen, Request
@@ -11,16 +11,16 @@ from urllib.request import urlopen, Request
 DATABASE_JSON      = read_database_JSON()
 CONFIGURATION_JSON = read_configuration_JSON()
 
-class ExchangeRateData:
+class ExchangeRate:
     def __init__(self):
         self.date = ""
         self.originCurrency = ""
         self.shippingCurrency = ""
         self.exchangeRate = ""
 
-class ExchangeRateDataBuild:
+class ExchangeRateBuild:
     def __init__(self):
-        self._exchangeRateData = ExchangeRateData()
+        self._exchangeRateData = ExchangeRate()
 
     def setDate(self, date):
         self._exchangeRateData.date = (
@@ -57,11 +57,11 @@ class ExchangeRateDataBuild:
             self._exchangeRateData.date.day
         )
 
-        exchangeRate = ExchangeRateMethodFactory.getData()
+        exchangeRate = ExchangeRateDataFactory.get(origenCurrency, shippingCurrency, dateFormatExchangeRate)
 
         if exchangeRate == None:
             exchangeRate = self.searchFrankFurterAPI(origenCurrency, shippingCurrency, dateFormatExchangeRate)
-            ExchangeRateMethodFactory.setData(exchangeRate)
+            ExchangeRateDataFactory.set(exchangeRate)
 
         self._exchangeRateData.exchangeRate = exchangeRate
         return self
