@@ -46,10 +46,10 @@ class ExchangeRateBuild:
         return self
 
     def setExchangeRate(self):
-        origenCurrency   = self._exchangeRateData.originCurrency
-        shippingCurrency = self._exchangeRateData.shippingCurrency
+        origen_currency   = self._exchangeRateData.originCurrency
+        shipping_currency = self._exchangeRateData.shippingCurrency
 
-        dateFormatExchangeRate = (
+        date_format_exchange_rate = (
             self._exchangeRateData.date.year + 
             "-" + 
             self._exchangeRateData.date.month + 
@@ -57,17 +57,17 @@ class ExchangeRateBuild:
             self._exchangeRateData.date.day
         )
 
-        exchangeRate = ExchangeRateDataFactory.get(origenCurrency, shippingCurrency, dateFormatExchangeRate)
+        exchange_rate_value = ExchangeRateDataFactory.get(origen_currency, shipping_currency, date_format_exchange_rate)
 
-        if exchangeRate == None:
-            exchangeRate = self.searchFrankFurterAPI(origenCurrency, shippingCurrency, dateFormatExchangeRate)
-            ExchangeRateDataFactory.set(exchangeRate)
+        if exchange_rate_value == None:
+            exchange_rate_value = self.searchFrankFurterAPI(origen_currency, shipping_currency, date_format_exchange_rate)
+            ExchangeRateDataFactory.set(origen_currency, shipping_currency, date_format_exchange_rate, exchange_rate_value)
 
-        self._exchangeRateData.exchangeRate = exchangeRate
+        self._exchangeRateData.exchangeRate = exchange_rate_value
         return self
 
-    def searchFrankFurterAPI(self, shippingCurrency, origenCurrency, dateFormatExchangeRate):
-        exchangeRateURL = f"https://api.frankfurter.dev/v2/rates?base={shippingCurrency}&quotes={origenCurrency}&date={dateFormatExchangeRate}"
+    def searchFrankFurterAPI(self, origen_currency, shipping_currency, date_format_exchange_rate):
+        exchangeRateURL = f"https://api.frankfurter.dev/v2/rates?base={shipping_currency}&quotes={origen_currency}&date={date_format_exchange_rate}"
         
         request = Request(
             exchangeRateURL,
