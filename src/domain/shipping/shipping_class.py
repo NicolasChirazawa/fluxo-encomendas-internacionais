@@ -1,4 +1,4 @@
-from infra.exchange_rate.exchange_rate_class import ExchangeRateDataBuild
+from infra.exchange_rate.exchange_rate_class import ExchangeRateBuild
 from domain.shipping.shipping_enum import ShippingStatus 
 
 class ProductShipping:
@@ -44,7 +44,7 @@ class ProductShippingBuild:
         return self
 
     def setShippingQuote(self):
-        exchangeRateData = (ExchangeRateDataBuild()
+        exchangeRateData = (ExchangeRateBuild()
             .setDate(self._productShipping.shippingDate)
             .setOriginCurrency()
             .setShippingCurrency(self._productShipping.shippingCountry)
