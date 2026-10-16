@@ -6,5 +6,5 @@
         "SEPARATOR": "/"
     },
     "DATABASE": "local",
-    "compilation": "full"
+    "COMPILATION": "full"
 }
