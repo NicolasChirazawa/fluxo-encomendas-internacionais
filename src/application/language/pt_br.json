@@ -38,6 +38,7 @@
         }
     },
     "SPREADSHEET": {
+        "FILE_NAME": "relatorio",
         "SUMMARIZED_DATA": {
             "TAB_NAME": "Informações Base",
             "COLUMNS": [

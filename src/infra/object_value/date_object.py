@@ -5,8 +5,8 @@ CONFIGURATION_JSON = read_configuration_JSON()
 class DateObjectValue:
     def __init__(self):
         self.date = ""
-        self.separator = CONFIGURATION_JSON["separator"] # Format needs to be using the same separator as date
-        self.format = CONFIGURATION_JSON["format"]
+        self.separator = CONFIGURATION_JSON["DATE"]["SEPARATOR"] # Format needs to be using the same separator as date
+        self.format = CONFIGURATION_JSON["DATE"]["FORMAT"]
         self.day = ""
         self.month = ""
         self.year = ""
@@ -53,7 +53,6 @@ class DateObjectBuild:
         return self._dateObject
 
     def validate(self):
-        # Validação de valores null
         self.validateEmptyValues(["date", "separator", "format", "day", "month", "year"])
 
     def validateEmptyValues (self, nameProperties):

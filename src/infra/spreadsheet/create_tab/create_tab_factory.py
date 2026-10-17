@@ -12,7 +12,7 @@ from application.language.read_language import read_language_JSON
 from enum import Enum
 
 CONFIGURATION_JSON = read_configuration_JSON()
-LANGUAGE_JSON      = read_language_JSON(CONFIGURATION_JSON['language'])
+LANGUAGE_JSON      = read_language_JSON(CONFIGURATION_JSON['LANGUAGE'])
 
 class Tab(Enum):
     SUMMARIZED_DATA = LANGUAGE_JSON["SPREADSHEET"]["SUMMARIZED_DATA"]["TAB_NAME"]

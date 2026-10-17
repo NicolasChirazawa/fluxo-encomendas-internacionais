@@ -35,11 +35,7 @@ class ProductDataBuild:
         return self._productData.__dict__
 
     def validate(self):
-
-        # Validação de valores null
         self.validateEmptyValues(["figureName", "mfcLink"])
-
-        # Validações específicas
         self.validateMFCLink("mfcLink")
 
     def validateEmptyValues (self, nameProperties):

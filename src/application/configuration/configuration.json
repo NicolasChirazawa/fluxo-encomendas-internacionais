@@ -1,6 +1,10 @@
-{        
-    "format": "dd/mm/yyyy",
-    "separator": "/",
-    "compilation": "full",
-    "language": "pt_br"
+{
+    "LANGUAGE": "pt_br",
+    "ORIGIN_COUNTRY": "Brasil",
+    "DATE": {
+        "FORMAT": "dd/mm/yyyy",
+        "SEPARATOR": "/"
+    },
+    "DATABASE": "local",
+    "COMPILATION": "full"
 }

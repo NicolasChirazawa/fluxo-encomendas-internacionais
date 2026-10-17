@@ -1,4 +1,4 @@
-from infra.exchange_rate.exchange_rate_class import ExchangeRateDataBuild
+from infra.exchange_rate.exchange_rate_class import ExchangeRateBuild
 
 class ProductPurchase:
     def __init__(self):
@@ -40,9 +40,10 @@ class ProductPurchaseBuild:
         return self
 
     def setPurchaseQuote(self):
-        exchangeRateData = (ExchangeRateDataBuild()
+        exchangeRateData = (ExchangeRateBuild()
             .setDate(self._productPurchase.purchasePaymentDate)
-            .setCurrency(self._productPurchase.purchaseCountry)
+            .setOriginCurrency()
+            .setShippingCurrency(self._productPurchase.purchaseCountry)
             .setExchangeRate()
             .build()
         )
