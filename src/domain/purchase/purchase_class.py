@@ -1,15 +1,17 @@
 from infra.exchange_rate.exchange_rate_class import ExchangeRateBuild
+from .purchase_enum import PurchaseStatus
 
 class ProductPurchase:
     def __init__(self):
-        self.purchasePlace = None
-        self.purchaseCountry = None
-        self.purchasePaymentDate = None
-        self.purchaseCurrencyPrice = None
+        self.purchasePlace              = None
+        self.purchaseCountry            = None
+        self.purchasePaymentDate        = None
+        self.purchaseCurrencyPrice      = None
         self.purchaseCurrencyServiceTax = 0
-        self.purchasePaymentMethod = None
-        self.purchaseQuote = None
-        self.purchasePrice = None
+        self.purchasePaymentMethod      = None
+        self.purchaseQuote              = None
+        self.purchasePrice              = None
+        self.purchaseStatus             = PurchaseStatus.NO_DATA
 
 class ProductPurchaseBuild:
     def __init__(self):
@@ -29,6 +31,7 @@ class ProductPurchaseBuild:
 
     def setPurchaseCurrencyPrice(self, purchaseCurrencyPrice):
         self._productPurchase.purchaseCurrencyPrice = purchaseCurrencyPrice
+        self._productPurchase.purchaseStatus = PurchaseStatus.AWAITING_PAYMENT
         return self
 
     def setPurchaseCurrencyServiceTax(self, purchaseCurrencyServiceTax):
@@ -59,26 +62,40 @@ class ProductPurchaseBuild:
             ) * self._productPurchase.purchaseQuote 
         ) 
 
-        self._productPurchase.purchasePrice = round(calculate_price, 2) 
+        self._productPurchase.purchasePrice = round(calculate_price, 2)
+        self._productPurchase.purchaseStatus = PurchaseStatus.COMPLETED
         return self
 
     def build(self):
+        self.updatePurchaseStatus(self._productPurchase.purchaseStatus)
         self.validate()
         return self._productPurchase.__dict__
 
-    def validate(self):
-        self.validateEmptyValues([
-            "purchasePlace", 
-            "purchaseCountry", 
-            "purchasePaymentDate", 
-            "purchaseCurrencyPrice", 
-            "purchaseCurrencyServiceTax", 
-            "purchasePaymentMethod", 
-            "purchaseQuote", 
-            "purchasePrice"
-        ])
+    def updatePurchaseStatus (self, purchaseStatus):
+        self._productPurchase.purchaseStatus = purchaseStatus.value
+        return self
 
-    def validateEmptyValues (self, nameProperties):
+    def validate (self):
+        if self._productPurchase.purchaseStatus == PurchaseStatus.NO_DATA.value:
+            return
+        elif self._productPurchase.purchaseStatus == PurchaseStatus.AWAITING_PAYMENT.value:
+            self.validateNonEmptyValues(["purchasePlace", "purchaseCountry", "purchaseCurrencyPrice"])
+        elif self._productPurchase.purchaseStatus == PurchaseStatus.COMPLETED.value:
+            self.validateNonEmptyValues([
+                "purchasePlace", 
+                "purchaseCountry", 
+                "purchasePaymentDate", 
+                "purchaseCurrencyPrice", 
+                "purchaseCurrencyServiceTax", 
+                "purchasePaymentMethod", 
+                "purchaseQuote", 
+                "purchasePrice"
+            ])
+        else:
+            raise ValueError("Invalid status error")
+
+    def validateNonEmptyValues (self, nameProperties):
+
         for nameProperty in nameProperties:
             propertyValue = getattr(self._productPurchase, nameProperty)
             if not propertyValue:

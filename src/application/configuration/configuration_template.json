@@ -1,0 +1,10 @@
+{
+    "LANGUAGE": "pt_br",         /* Language used in the generated spreadsheet. Allowed values: see src/infra/enum/language.py */
+    "ORIGIN_COUNTRY": "Brasil",  /* Country whose currency amounts are converted to. Allowed values: see src/infra/enum/country_currency.py */
+    "DATE": {
+        "FORMAT": "dd/mm/yyyy",  /* Date components may be in any order, but must use the same separator defined in SEPARATOR below */
+        "SEPARATOR": "/"         /* Must match the separator used in FORMAT above */
+    },
+    "DATABASE": "local",         /* Cache used by the system. Allowed values: see src/infra/enum/exchange_rate_method.py */
+    "COMPILATION": "full"        /* Tabs generated in the spreadsheet. Allowed values: see src/infra/enum/compilation.py */
+}

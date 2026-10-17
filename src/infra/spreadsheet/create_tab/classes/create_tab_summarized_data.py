@@ -14,7 +14,8 @@ class TabSummatizedData:
             "code", 
             "figureName", 
             "status",
-            "statusData"
+            "statusData",
+            "totalValue"
         ] 
         self.dataframe = ""
 

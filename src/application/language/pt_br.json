@@ -1,5 +1,10 @@
 {
     "STATUS": {
+        "PURCHASE": {
+            "NO_DATA": "Sem informações",
+            "AWAITING_PAYMENT": "Esperando pagamento",
+            "COMPLETED": "Produto pago"
+        },
         "SHIPPING": {
             "NO_DATA": "Sem informações",
             "AWAITING_PAYMENT": "Esperando pagamento",
@@ -17,6 +22,12 @@
         }
     },
     "SUMMARIZED": {
+        "PURCHASE": {
+            "NO_DATA_STATUS": "Sem informações de compra",
+            "NO_DATA_STATUS_DATA": "Produto sem cadastro na aba de compra",
+            "AWAITING_PAYMENT_STATUS": "Esperando pagamento do produto",
+            "AWAITING_PAYMENT_STATUS_DATA": "O produto ainda não foi pago"
+        },
         "SHIPPING": {
             "NO_DATA_STATUS": "Sem informações de envio",
             "NO_DATA_STATUS_DATA": "Produto sem cadastro na aba de envio",
@@ -45,7 +56,8 @@
                 "Código",
                 "Nome da Figure", 
                 "Status", 
-                "Informações Adicionais"
+                "Informações Adicionais",
+                "Valor Total (Até agora)"
             ]
         },
         "FULL_DATA": {
