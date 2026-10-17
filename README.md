@@ -65,17 +65,23 @@ Existem dois arquivos que são configuráveis no projeto.
 
 ```json
 {
-    "format": "dd/mm/yyyy",
-    "separator": "/",
-    "compilation": "full",
-    "language": "pt-br"
+    "LANGUAGE": "pt_br",         /* Language used in the generated spreadsheet. Allowed values: see src/infra/enum/language.py */
+    "ORIGIN_COUNTRY": "Brasil",  /* Country whose currency amounts are converted to. Allowed values: see src/infra/enum/country_currency.py */
+    "DATE": {
+        "FORMAT": "dd/mm/yyyy",  /* Date components may be in any order, but must use the same separator defined in SEPARATOR below */
+        "SEPARATOR": "/"         /* Must match the separator used in FORMAT above */
+    },
+    "DATABASE": "local",         /* Cache used by the system. Allowed values: see src/infra/enum/exchange_rate_method.py */
+    "COMPILATION": "full"        /* Tabs generated in the spreadsheet. Allowed values: see src/infra/enum/compilation.py */
 }
 ```
 
-- **format**: Formato que as datas do projeto devem respeitar. O separador definido em `separator` deve ser o mesmo usado aqui;
-- **separator**: Separador utilizado para dar `split()` nas datas;
-- **compilation**: Abas geradas no Excel — `simple` (abas individuais por etapa), `complete` (aba com dados de todas as etapas), `full` (ambas anteriores combinadas);
-- **language**: A língua utilizada no Excel. Valores disponíveis: `pt-br` e `eng`;
+- **LANGUAGE**: A língua utilizada no Excel. Valores disponíveis em: `src/infra/enum/language.py`;
+- **ORIGIN_COUNTRY**: Moeda de conversão final do sistema. Valores disponíveis: `src/infra/enum/country_currency.py`;
+- **FORMAT**: Formato que as datas do projeto devem respeitar. O separador definido em `separator` deve ser o mesmo usado aqui;
+- **SEPARATOR**: Separador utilizado para dar `split()` nas datas;
+- **DATABASE**: Cache usado pelo sistema. Valores disponíveis em: `src/infra/enum/exchange_rate_method.py`;
+- **COMPILATION**: Abas geradas no Excel — `simple` (abas individuais por etapa), `complete` (aba com dados de todas as etapas), `full` (ambas anteriores combinadas);
 
 <h3>database.json</h3>
 
@@ -144,8 +150,6 @@ O projeto está dividido em módulos:
 - **Delivery**         → Responsável pela construção dos dados de entrega;
 - **Summarize**        → Responsável pelo resumo do status da encomenda com base nos dados fornecidos;
 - **Compilation Data** → Responsável pela compilação dos dados gerais em blocos de objetos;
-- **Create Tab**       → Responsável pela criação de modelos de aba de Excel;
-- **Create Report**    → Responsável pela criação do Excel;
 
 ## Contribuição
 
