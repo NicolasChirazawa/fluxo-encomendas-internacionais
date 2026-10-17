@@ -31,35 +31,35 @@ class CreateTabFactory:
         except KeyError:
             raise ValueError("Invalid enum tab value")
 
-        tabData = None
+        tab_data = None
 
         if enum_tab == Tab.SUMMARIZED_DATA:
-            tabData = TabSummarizedDataBuild()
+            tab_data = TabSummarizedDataBuild()
             
         elif enum_tab == Tab.FULL_DATA:
-            tabData = TabFullDataBuild()
+            tab_data = TabFullDataBuild()
 
         elif enum_tab == Tab.PRODUCT_DATA:
-            tabData = TabProcuctDataBuilder()
+            tab_data = TabProcuctDataBuilder()
 
         elif enum_tab == Tab.PURCHASE_DATA:
-            tabData = TabPurchaseDataBuilder()
+            tab_data = TabPurchaseDataBuilder()
 
         elif enum_tab == Tab.SHIPPING_DATA:
-            tabData = TabShippingDataBuilder()
+            tab_data = TabShippingDataBuilder()
 
         elif enum_tab == Tab.TAX_DATA:
-            tabData = TabTaxDataBuilder()
+            tab_data = TabTaxDataBuilder()
 
         elif enum_tab == Tab.DELIVERY_DATA:
-            tabData = TabDeliveryDataBuilder()    
+            tab_data = TabDeliveryDataBuilder()    
 
-        tabData = (
-            tabData
+        tab_data = (
+            tab_data
             .setType(enum_tab.name)
             .setTabName(enum_tab.value)
             .setDataframe(data)
             .build()
         )
             
-        return tabData
+        return tab_data
