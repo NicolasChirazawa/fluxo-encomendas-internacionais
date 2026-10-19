@@ -1,10 +1,5 @@
-from application.configuration.read_configuration import read_configuration_JSON
-from application.language.read_language import read_language_JSON
-
 import pandas as pd
 
-CONFIGURATION_JSON = read_configuration_JSON()
-LANGUAGE_JSON      = read_language_JSON(CONFIGURATION_JSON['LANGUAGE'])
 
 class ExcelReportBuilder:
     def __init__(self):
@@ -15,8 +10,8 @@ class ExcelReportBuilder:
         self._tabs.extend(tabs)
         return self
 
-    def addFileName(self):
-        self.fileName = LANGUAGE_JSON["SPREADSHEET"]["FILE_NAME"]
+    def addFileName(self, file_name):
+        self.fileName = file_name
         return self
 
     def build(self):
