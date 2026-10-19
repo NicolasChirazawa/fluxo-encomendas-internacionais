@@ -10,7 +10,10 @@ CONFIGURATION_JSON = read_configuration_JSON()
 class ExchangeRateDataFactory:
     def get (origen_currency, shipping_currency, date_format_exchange_rate):
 
-        ExchangeRateConfig = CONFIGURATION_JSON["DATABASE"].upper()
+        ExchangeRateConfig = CONFIGURATION_JSON.get("DATABASE")
+        if ExchangeRateConfig != None:
+            ExchangeRateConfig = ExchangeRateConfig.upper()
+
 
         if ExchangeRateConfig == ExchangeRateMethod.LOCAL.name:
             return exchange_rate_cache.get(origen_currency, shipping_currency, date_format_exchange_rate)
@@ -28,7 +31,10 @@ class ExchangeRateDataFactory:
             )
     
     def set (origen_currency, shipping_currency, date_format_exchange_rate, exchange_rate_value):
-        ExchangeRateConfig = CONFIGURATION_JSON["DATABASE"].upper()
+
+        ExchangeRateConfig = CONFIGURATION_JSON.get("DATABASE")
+        if ExchangeRateConfig != None:
+            ExchangeRateConfig = ExchangeRateConfig.upper()
 
         if ExchangeRateConfig == ExchangeRateMethod.LOCAL.name:
             exchange_rate_cache.set(origen_currency, shipping_currency, date_format_exchange_rate, exchange_rate_value)
