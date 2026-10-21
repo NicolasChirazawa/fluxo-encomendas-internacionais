@@ -1,41 +1,46 @@
-{        
-    "XXX001": {
-        "Nome_Figure": "Exemplo de nome",
-        "MFC_Link": "https://myfigurecollection.net/item/EXEMPLO",
-        "Marca": "Exemplo de marca",
-        "Linha": "Exemplo de linha",
-        "Escala": "Exemplo de escala",
-
-        "Compra": {
-            "Local_da_Compra": "Exemplo de loja/proxy",
-            "Pais_Local": "Exemplo de local",   
-            "Data_do_Pagamento": "DD/MM/YYYY", /* This is a date example format that can be changef on configurations 'src/app/configuration/configuration.json' */ 
-            "Metodo_Pagamento": "Exemplo de método de pagamento",
-            "Custos": {
-                "Preco": "Exemplo de valor",
-                "Taxa": "Exemplo de taxa"
+{
+    "CAIXAS": {
+        "Nome_da_caixa": {
+            "PRODUTOS": ["XXX001"],
+            "FRETE": {
+                "Data_Limite_Pagamento": "DD/MM/YYYY",
+                "Pais_Local": "Pais",
+                "Data_do_Frete": "DD/MM/YYYY",
+                "PAGAMENTO": {
+                    "Metodo_Pagamento": "Metodo de pagamento",
+                    "Preco": "Valor",
+                    "Taxa": "Taxa"
+                }
+            },
+            "IMPOSTO": {
+                "Data_Limite_Pagamento": "DD/MM/YYYY",
+                "Data_do_Imposto": "DD/MM/YYYY",
+                "Preco_Imposto": "Valor"
+            },
+            "ENTREGA": {
+                "Data_da_Entrega": "DD/MM/YYYY"
             }
-        },
+        }
+    },
+    "PRODUTOS": {   
+        "XXX001": {
+            "Nome_Figure": "Nome da figure",
+            "MFC_Link": "https://myfigurecollection.net/item/3054167",
+            "Marca": "Marca da figure",
+            "Linha": "Linha da Figure",
+            "Escala": "Escala da figure",
 
-        "Frete": {
-            "Data_Limite_Pagamento": "DD/MM/YYYY",
-            "Pais_Local": "Exemplo de local",
-            "Data_do_Frete": "DD/MM/YYYY",
-            "Metodo_Pagamento": "Exemplo de método de pagamento",
-            "Custos": {
-                "Preco": "Exemplo de valor",
-                "Taxa": "Exemplo de taxa"
+            "COMPRA": {
+                "Local_da_Compra": "Local da compra - Proxy",
+                "Pais_Local": "Pais que o item foi comprado",
+                "PAGAMENTO": {
+                    "Metodo_Pagamento": "Metodo de pagamento",
+                    "Preco": "Valor",
+                    "Taxa": "Taxa"
+                },
+                "Data_do_Pagamento": "DD/MM/YYYY"
             }
-        },
-
-        "Imposto": {
-            "Data_Limite_Pagamento": "DD/MM/YYYY",
-            "Data_do_Imposto": "DD/MM/YYYY",
-            "Preco_Imposto": "Exemplo de imposto"
-        },
-        
-        "Entrega": {
-            "Data_da_Entrega": "DD/MM/YYYY"
         }
     }
 }
+
