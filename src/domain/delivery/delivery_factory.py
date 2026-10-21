@@ -1,16 +1,16 @@
 from domain.delivery.delivery_class import ProductDeliveryBuild
 
 class ProductDeliveryFactory:
-    def create(self, product_info):
+    def create(self, box_info):
 
-        has_arrive = product_info.get("Entrega", None)
+        has_arrive = box_info.get("ENTREGA", None)
         if not has_arrive:
             return (
                 ProductDeliveryBuild()
                 .build()
             )
 
-        has_date_arrive = product_info["Entrega"].get("Data_da_Entrega", None)
+        has_date_arrive = box_info["ENTREGA"].get("Data_da_Entrega", None)
         if not has_date_arrive:
             return (
                 ProductDeliveryBuild()
@@ -20,6 +20,6 @@ class ProductDeliveryFactory:
 
         return (
             ProductDeliveryBuild()
-            .setDeliveryDate(product_info["Entrega"]["Data_da_Entrega"])
+            .setDeliveryDate(box_info["ENTREGA"]["Data_da_Entrega"])
             .build()
         )

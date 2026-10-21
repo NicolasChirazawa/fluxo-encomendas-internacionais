@@ -1,32 +1,35 @@
 from .tax_enum import TaxStatus
 
+from infra.helper.reduce_fraction_price import reduce_fraction_price
+
 class ProductTax:
     def __init__(self):
         self.taxDateLimit = None
         self.taxDate      = None
-        self.taxPrice     = "0"
+        self.taxPrice     = 0
         self.taxStatus    = TaxStatus.NO_DATA
 
 class ProductTaxBuild:
     def __init__(self):
         self._productTax = ProductTax()
 
-    def setDateLimit (self, taxDateLimit):        
-        self._productTax.taxDateLimit = taxDateLimit
+    def setDateLimit (self, tax_date_limit):        
+        self._productTax.taxDateLimit = tax_date_limit
         self._productTax.taxStatus = TaxStatus.AWAITING_PAYMENT
         return self
     
-    def setTaxDate (self, taxDate):        
-        self._productTax.taxDate = taxDate
+    def setTaxDate (self, tax_date):        
+        self._productTax.taxDate = tax_date
         self._productTax.taxStatus = TaxStatus.COMPLETED
         return self
 
-    def setTaxPrice (self, taxPrice):        
-        self._productTax.taxPrice = taxPrice
+    def setTaxPrice (self, tax_price):
+        new_tax_price = reduce_fraction_price(tax_price)  
+        self._productTax.taxPrice = new_tax_price
         return self
 
-    def updateTaxStatus (self, taxStatus):
-        self._productTax.taxStatus = taxStatus.value
+    def updateTaxStatus (self, tax_status):
+        self._productTax.taxStatus = tax_status.value
         return self
 
     def build (self):

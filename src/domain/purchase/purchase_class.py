@@ -17,29 +17,29 @@ class ProductPurchaseBuild:
     def __init__(self):
         self._productPurchase = ProductPurchase()
 
-    def setPurchasePlace(self, purchasePlace):
-        self._productPurchase.purchasePlace = purchasePlace
+    def setPurchasePlace(self, purchase_place):
+        self._productPurchase.purchasePlace = purchase_place
         return self
 
-    def setPurchaseCountry(self, purchaseCountry):
-        self._productPurchase.purchaseCountry = purchaseCountry
+    def setPurchaseCountry(self, purchase_country):
+        self._productPurchase.purchaseCountry = purchase_country
         return self
 
-    def setPurchasePaymentDate(self, purchasePaymentDate):
-        self._productPurchase.purchasePaymentDate = purchasePaymentDate
+    def setPurchasePaymentDate(self, purchase_payment_date):
+        self._productPurchase.purchasePaymentDate = purchase_payment_date
         return self
 
-    def setPurchaseCurrencyPrice(self, purchaseCurrencyPrice):
-        self._productPurchase.purchaseCurrencyPrice = purchaseCurrencyPrice
+    def setPurchaseCurrencyPrice(self, purchase_currency_price):
+        self._productPurchase.purchaseCurrencyPrice = purchase_currency_price
         self._productPurchase.purchaseStatus = PurchaseStatus.AWAITING_PAYMENT
         return self
 
-    def setPurchaseCurrencyServiceTax(self, purchaseCurrencyServiceTax):
-        self._productPurchase.purchaseCurrencyServiceTax = purchaseCurrencyServiceTax
+    def setPurchaseCurrencyServiceTax(self, purchase_currency_service_tax):
+        self._productPurchase.purchaseCurrencyServiceTax = purchase_currency_service_tax
         return self
 
-    def setPurchasePaymentMethod(self, purchasePaymentMethod):
-        self._productPurchase.purchasePaymentMethod = purchasePaymentMethod
+    def setPurchasePaymentMethod(self, purchase_payment_method):
+        self._productPurchase.purchasePaymentMethod = purchase_payment_method
         return self
 
     def setPurchaseQuote(self):

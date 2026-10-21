@@ -1,8 +1,8 @@
 import copy
 
-def getIdentifierData (product_data, code):
+def getIdentifierData (product_data, boxCode):
     identifier = {
-        "code": code,
+        "code": boxCode,
         "figureName": product_data["figureName"]
     }
     return identifier

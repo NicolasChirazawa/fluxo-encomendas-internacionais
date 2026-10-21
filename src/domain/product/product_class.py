@@ -10,20 +10,20 @@ class ProductDataBuild:
     def __init__(self):
         self._productData = ProductData()
 
-    def setFigureName(self, figureName):        
-        self._productData.figureName = figureName
+    def setFigureName(self, figure_name):        
+        self._productData.figureName = figure_name
         return self
 
-    def setMFCLink(self, mfcLink):
-        self._productData.mfcLink = mfcLink
+    def setMFCLink(self, mfc_link):
+        self._productData.mfcLink = mfc_link
         return self
 
     def setBrand(self, brand):
         self._productData.brand = brand
         return self
 
-    def setProcuctLine(self, productLine):
-        self._productData.productLine = productLine
+    def setProcuctLine(self, product_line):
+        self._productData.productLine = product_line
         return self
 
     def setScale(self, scale):

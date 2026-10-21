@@ -5,6 +5,7 @@ class compilationData:
         self.summarizeData       = {}
         self.productData         = {}
         self.productPurchaseData = {}
+        self.productBoxData      = {}
         self.productShippingData = {}
         self.productTaxData      = {}
         self.productDeliveryData = {}
@@ -14,32 +15,36 @@ class compilationDataBuild:
     def __init__(self):
         self._compilationData = compilationData()
 
-    def setSummarizeData(self, summarizeData):
-        self._compilationData.summarizeData = summarizeData
+    def setSummarizeData(self, summarize_data):
+        self._compilationData.summarizeData = summarize_data
         return self
 
-    def setProductData(self, productData):
-        self._compilationData.productData = productData
+    def setProductData(self, product_data):
+        self._compilationData.productData = product_data
         return self
 
-    def setProductPurchaseData(self, productPurchaseData):
-        self._compilationData.productPurchaseData = productPurchaseData
+    def setProductPurchaseData(self, product_purchase_data):
+        self._compilationData.productPurchaseData = product_purchase_data
         return self
 
-    def setProductShippingData(self, productShippingData):
-        self._compilationData.productShippingData = productShippingData
+    def setProductBoxData(self, product_box_data):
+        self._compilationData.productBoxData = product_box_data
         return self
 
-    def setProductTaxData(self, productTaxData):
-        self._compilationData.productTaxData = productTaxData
+    def setProductShippingData(self, product_shipping_data):
+        self._compilationData.productShippingData = product_shipping_data
         return self
 
-    def setProductDeliveryData(self, productDeliveryData):
-        self._compilationData.productDeliveryData = productDeliveryData
+    def setProductTaxData(self, product_tax_data):
+        self._compilationData.productTaxData = product_tax_data
         return self
 
-    def setIdentifyData(self, identifyData):
-        self._compilationData.identifyData = identifyData
+    def setProductDeliveryData(self, product_delivery_data):
+        self._compilationData.productDeliveryData = product_delivery_data
+        return self
+
+    def setIdentifyData(self, identify_data):
+        self._compilationData.identifyData = identify_data
         return self
 
     def createBaseCompilation(self):
@@ -54,15 +59,17 @@ class compilationDataBuild:
     def createSimpleCompilation(self):
         new_product_data          = injectIdentifier(self._compilationData.productData,         self._compilationData.identifyData)
         new_product_purchase_data = injectIdentifier(self._compilationData.productPurchaseData, self._compilationData.identifyData)
+        new_product_box_data      = injectIdentifier(self._compilationData.productBoxData,      self._compilationData.identifyData)
         new_product_shipping_data = injectIdentifier(self._compilationData.productShippingData, self._compilationData.identifyData)
         new_product_tax_data      = injectIdentifier(self._compilationData.productTaxData,      self._compilationData.identifyData)
-        new_product_delivery_data = injectIdentifier(self._compilationData.productDeliveryData,      self._compilationData.identifyData)
+        new_product_delivery_data = injectIdentifier(self._compilationData.productDeliveryData, self._compilationData.identifyData)
 
         simple_compilation = {
-            "product_data": new_product_data,
+            "product_data":          new_product_data,
             "product_purchase_data": new_product_purchase_data,
+            "product_box_data":      new_product_box_data,
             "product_shipping_data": new_product_shipping_data,
-            "product_tax_data": new_product_tax_data,
+            "product_tax_data":      new_product_tax_data,
             "product_delivery_data": new_product_delivery_data
         }
 
@@ -72,10 +79,11 @@ class compilationDataBuild:
         new_product_data = injectIdentifier(self._compilationData.productData, self._compilationData.identifyData)
         
         complete_compilation = (
-            new_product_data | 
+            new_product_data                          | 
             self._compilationData.productPurchaseData | 
+            self._compilationData.productBoxData      | 
             self._compilationData.productShippingData | 
-            self._compilationData.productTaxData |
+            self._compilationData.productTaxData      |
             self._compilationData.productDeliveryData
         )
 

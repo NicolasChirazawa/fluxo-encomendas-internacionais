@@ -4,9 +4,9 @@ from application.configuration.read_configuration import read_configuration_JSON
 from enum import Enum
 
 CONFIGURATION_JSON = read_configuration_JSON()
-LANGUAGE_JSON      = read_language_JSON(CONFIGURATION_JSON['LANGUAGE'])
+LANGUAGE_JSON      = read_language_JSON(CONFIGURATION_JSON["LOCALE"]["LANGUAGE"])
 
 class ShippingStatus(Enum):
-    NO_DATA          = LANGUAGE_JSON['STATUS']['SHIPPING']['NO_DATA']
-    AWAITING_PAYMENT = LANGUAGE_JSON['STATUS']['SHIPPING']['AWAITING_PAYMENT']
-    COMPLETED        = LANGUAGE_JSON['STATUS']['SHIPPING']['COMPLETED']
+    NO_DATA          = LANGUAGE_JSON["STATUS"]["SHIPPING"]["NO_DATA"]
+    AWAITING_PAYMENT = LANGUAGE_JSON["STATUS"]["SHIPPING"]["AWAITING_PAYMENT"]
+    COMPLETED        = LANGUAGE_JSON["STATUS"]["SHIPPING"]["COMPLETED"]

@@ -33,7 +33,7 @@ class ExchangeRateBuild:
         return self
 
     def setOriginCurrency(self):
-        country = CONFIGURATION_JSON["ORIGIN_COUNTRY"]
+        country  = CONFIGURATION_JSON["LOCALE"]["COUNTRY"]
         country = country.upper()
         self._exchangeRateData.originCurrency = Currency[country].value
 
