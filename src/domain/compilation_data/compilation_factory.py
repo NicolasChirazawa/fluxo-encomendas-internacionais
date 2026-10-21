@@ -8,6 +8,7 @@ class CompilationDataFactory:
             product_summarize_data, 
             product_data, 
             product_purchase_data, 
+            product_box_data,
             product_shipping_data, 
             product_tax_data, 
             product_delivery_data,
@@ -20,6 +21,7 @@ class CompilationDataFactory:
             .setSummarizeData(product_summarize_data)
             .setProductData(product_data)
             .setProductPurchaseData(product_purchase_data)
+            .setProductBoxData(product_box_data)
             .setProductShippingData(product_shipping_data)
             .setProductTaxData(product_tax_data)
             .setProductDeliveryData(product_delivery_data)
@@ -31,6 +33,7 @@ class CompilationDataFactory:
             "product_full_data": None,
             "product_data": None,
             "product_purchase_data": None,
+            "product_box_data": None,
             "product_shipping_data": None,
             "product_tax_data": None,
             "product_delivery_data": None,
@@ -44,6 +47,7 @@ class CompilationDataFactory:
 
             compilation["product_data"]          = simple_compilation["product_data"]
             compilation["product_purchase_data"] = simple_compilation["product_purchase_data"]
+            compilation["product_box_data"]      = simple_compilation["product_box_data"]
             compilation["product_shipping_data"] = simple_compilation["product_shipping_data"]
             compilation["product_tax_data"]      = simple_compilation["product_tax_data"]
             compilation["product_delivery_data"] = simple_compilation["product_delivery_data"]
