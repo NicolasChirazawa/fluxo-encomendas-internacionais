@@ -1,9 +1,9 @@
 from domain.shipping.shipping_class import ProductShippingBuild
 
 class ProductShippingFactory:
-    def create(self, product_info):
+    def create(self, box_info):
 
-        has_shippment = product_info.get("Frete", None)
+        has_shippment = box_info.get("FRETE", None)
 
         if not has_shippment:
             return (
@@ -11,22 +11,22 @@ class ProductShippingFactory:
                 .build()
             )
 
-        has_date_shippment = product_info["Frete"].get("Data_do_Frete", None)
+        has_date_shippment = box_info["FRETE"].get("Data_do_Frete", None)
         if not has_date_shippment:
             return (
                 ProductShippingBuild()
-                .setShippingDateLimit(product_info["Frete"]["Data_Limite_Pagamento"])
+                .setShippingDateLimit(box_info["FRETE"]["Data_Limite_Pagamento"])
                 .build()
             )
 
         return (
             ProductShippingBuild()
-            .setShippingDateLimit(product_info["Frete"]["Data_Limite_Pagamento"])
-            .setShippingCountry(product_info["Frete"]["Pais_Local"])
-            .setShippingDate(product_info["Frete"]["Data_do_Frete"])
-            .setShippingCurrencyPrice(product_info["Frete"]["Custos"]["Preco"])
-            .setShippingCurrencyServiceTax(product_info["Frete"]["Custos"]["Taxa"])
-            .setShippingPaymentMethod(product_info["Frete"]["Metodo_Pagamento"])
+            .setShippingDateLimit(box_info["FRETE"]["Data_Limite_Pagamento"])
+            .setShippingCountry(box_info["FRETE"]["Pais_Local"])
+            .setShippingDate(box_info["FRETE"]["Data_do_Frete"])
+            .setShippingCurrencyPrice(box_info["FRETE"]["PAGAMENTO"]["Preco"])
+            .setShippingCurrencyServiceTax(box_info["FRETE"]["PAGAMENTO"]["Taxa"])
+            .setShippingPaymentMethod(box_info["FRETE"]["PAGAMENTO"]["Metodo_Pagamento"])
             .setShippingQuote()
             .setShippingPrice()
             .build()

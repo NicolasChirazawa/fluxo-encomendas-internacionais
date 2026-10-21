@@ -5,8 +5,8 @@ CONFIGURATION_JSON = read_configuration_JSON()
 class DateObjectValue:
     def __init__(self):
         self.date = ""
-        self.separator = CONFIGURATION_JSON["DATE"]["SEPARATOR"] # Format needs to be using the same separator as date
-        self.format = CONFIGURATION_JSON["DATE"]["FORMAT"]
+        self.separator = CONFIGURATION_JSON["LOCALE"]["DATE"]["SEPARATOR"] # Format needs to be using the same separator as date
+        self.format =    CONFIGURATION_JSON["LOCALE"]["DATE"]["FORMAT"]
         self.day = ""
         self.month = ""
         self.year = ""
