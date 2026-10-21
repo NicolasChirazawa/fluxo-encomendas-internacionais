@@ -1,32 +1,40 @@
 {
     "STATUS": {
-        "PURCHASE": {
+        "PURCHASING": {
             "NO_DATA": "Sem informações",
             "AWAITING_PAYMENT": "Esperando pagamento",
             "COMPLETED": "Produto pago"
+        },
+        "BOXING": {
+            "AWAITING_BOXING": "Item fora de caixa",
+            "COMPLETED": "Item numa caixa"
         },
         "SHIPPING": {
             "NO_DATA": "Sem informações",
             "AWAITING_PAYMENT": "Esperando pagamento",
             "COMPLETED": "Envio pago"
         },
-        "TAX": {
+        "TAXING": {
             "NO_DATA": "Sem informações",
             "AWAITING_PAYMENT": "Esperando pagamento",
             "COMPLETED": "Imposto pago"
         },
-        "DELIVERY": {
+        "DELIVERING": {
             "NO_DATA": "Sem informações",
             "AWAITING_DELIVERY": "Esperando a entrega",
             "COMPLETED": "Entrega realizada"
         }
     },
     "SUMMARIZED": {
-        "PURCHASE": {
+        "PURCHASING": {
             "NO_DATA_STATUS": "Sem informações de compra",
             "NO_DATA_STATUS_DATA": "Produto sem cadastro na aba de compra",
             "AWAITING_PAYMENT_STATUS": "Esperando pagamento do produto",
             "AWAITING_PAYMENT_STATUS_DATA": "O produto ainda não foi pago"
+        },
+        "BOXING": {
+            "AWAITING_BOXING_STATUS": "Item não cadastrado em nenhuma caixa",
+            "AWAITING_BOXING_STATUS_DATA": "O produto ainda não está presente em nenhuma caixa"
         },
         "SHIPPING": {
             "NO_DATA_STATUS": "Sem informações de envio",
@@ -34,13 +42,13 @@
             "AWAITING_PAYMENT_STATUS": "Esperando pagamento do envio",
             "AWAITING_PAYMENT_STATUS_DATA": "Data limite de envio: "
         },
-        "TAX": {
+        "TAXING": {
             "NO_DATA_STATUS": "Sem informações de imposto",
             "NO_DATA_STATUS_DATA": "Produto sem cadastro na aba de imposto",
             "AWAITING_PAYMENT_STATUS": "Esperando pagamento do imposto",
             "AWAITING_PAYMENT_STATUS_DATA": "Data limite de imposto: "
         },
-        "DELIVERY": {
+        "DELIVERING": {
             "NO_DATA_STATUS": "Sem informações de entrega",
             "NO_DATA_STATUS_DATA": "Produto sem cadastro na aba de entrega",
             "AWAITING_DELIVERY_STATUS": "Esperando entrega",
@@ -116,6 +124,15 @@
                 "Meio de pagamento", 
                 "Cota", 
                 "Preço de Compra (Real)"
+            ]
+        },
+        "BOX_DATA": { 
+            "TAB_NAME": "Dados de Pacotes",
+            "COLUMNS": [
+                "Código", 
+                "Nome da Figure",
+                "Código da Caixa",
+                "Status da Caixa"
             ]
         },
         "SHIPPING_DATA": {
