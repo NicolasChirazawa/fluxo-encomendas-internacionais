@@ -13,13 +13,13 @@ class ProductDeliveryBuild:
         self._productDelivery.deliveryStatus = DeliveryStatus.AWAITING_DELIVERY
         return self
     
-    def setDeliveryDate (self, deliveryDate):
-        self._productDelivery.deliveryDate = deliveryDate
+    def setDeliveryDate (self, delivery_date):
+        self._productDelivery.deliveryDate = delivery_date
         self._productDelivery.deliveryStatus = DeliveryStatus.COMPLETED
         return self
 
-    def updateDeliveryStatus (self, deliveryStatus):
-        self._productDelivery.deliveryStatus = deliveryStatus.value
+    def updateDeliveryStatus (self, delivery_status):
+        self._productDelivery.deliveryStatus = delivery_status.value
         return self
 
     def build (self):

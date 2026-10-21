@@ -1,6 +1,8 @@
 from infra.exchange_rate.exchange_rate_class import ExchangeRateBuild
 from domain.shipping.shipping_enum import ShippingStatus 
 
+from infra.helper.reduce_fraction_price import reduce_fraction_price
+
 class ProductShipping:
     def __init__(self):
         self.shippingDateLimit = None
@@ -17,30 +19,33 @@ class ProductShippingBuild:
     def __init__(self):
         self._productShipping = ProductShipping()
 
-    def setShippingDateLimit(self, shippingDateLimit):        
-        self._productShipping.shippingDateLimit = shippingDateLimit
+    def setShippingDateLimit(self, shipping_date_limit):        
+        self._productShipping.shippingDateLimit = shipping_date_limit
         self._productShipping.shippingStatus = ShippingStatus.AWAITING_PAYMENT
         return self
 
-    def setShippingCountry(self, shippingCountry):        
-        self._productShipping.shippingCountry = shippingCountry
+    def setShippingCountry(self, shipping_country):        
+        self._productShipping.shippingCountry = shipping_country
         return self
 
-    def setShippingDate(self, shippingDate):
-        self._productShipping.shippingDate = shippingDate
+    def setShippingDate(self, shipping_date):
+        self._productShipping.shippingDate = shipping_date
         self._productShipping.shippingStatus = ShippingStatus.COMPLETED
         return self
 
-    def setShippingCurrencyPrice(self, shippingCurrencyPrice):
-        self._productShipping.shippingCurrencyPrice = shippingCurrencyPrice
+    def setShippingCurrencyPrice(self, shipping_currency_price):
+        new_shipping_currency_price = reduce_fraction_price(shipping_currency_price)
+        self._productShipping.shippingCurrencyPrice = new_shipping_currency_price
+
         return self
 
-    def setShippingCurrencyServiceTax(self, shippingCurrencyServiceTax):
-        self._productShipping.shippingCurrencyServiceTax = shippingCurrencyServiceTax
+    def setShippingCurrencyServiceTax(self, shipping_currency_service_tax):
+        new_currency_service_tax = reduce_fraction_price(shipping_currency_service_tax)
+        self._productShipping.shippingCurrencyServiceTax = new_currency_service_tax
         return self
 
-    def setShippingPaymentMethod(self, shippingPaymentMethod):
-        self._productShipping.shippingPaymentMethod = shippingPaymentMethod
+    def setShippingPaymentMethod(self, shipping_payment_method):
+        self._productShipping.shippingPaymentMethod = shipping_payment_method
         return self
 
     def setShippingQuote(self):
