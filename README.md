@@ -65,14 +65,19 @@ Existem dois arquivos que são configuráveis no projeto.
 
 ```json
 {
-    "LANGUAGE": "pt_br",         /* Language used in the generated spreadsheet. Allowed values: see src/infra/enum/language.py */
-    "ORIGIN_COUNTRY": "Brasil",  /* Country whose currency amounts are converted to. Allowed values: see src/infra/enum/country_currency.py */
-    "DATE": {
-        "FORMAT": "dd/mm/yyyy",  /* Date components may be in any order, but must use the same separator defined in SEPARATOR below */
-        "SEPARATOR": "/"         /* Must match the separator used in FORMAT above */
+    "LOCALE": {
+        "COUNTRY": "Brasil",         /* Country whose currency amounts are converted to. Allowed values: see src/infra/enum/country_currency.py */
+        "LANGUAGE": "pt_br",         /* Language used in the generated spreadsheet. Allowed values: see src/infra/enum/language.py */
+        "CURRENCY": "BRL",
+        "DATE": {
+            "FORMAT": "dd/mm/yyyy",  /* Date components may be in any order, but must use the same separator defined in SEPARATOR below */
+            "SEPARATOR": "/"         /* Must match the separator used in FORMAT above */
+        }
     },
-    "DATABASE": "local",         /* Cache used by the system. Allowed values: see src/infra/enum/exchange_rate_method.py */
-    "COMPILATION": "full"        /* Tabs generated in the spreadsheet. Allowed values: see src/infra/enum/compilation.py */
+    "SPREADSHEET": {
+        "COMPILATION": "full"        /* Tabs generated in the spreadsheet. Allowed values: see src/infra/enum/compilation.py */
+    },
+    "DATABASE": "local"              /* OPTIONAL. Cache used by the system. Allowed values: see src/infra/enum/exchange_rate_method.py */
 }
 ```
 
@@ -80,50 +85,54 @@ Existem dois arquivos que são configuráveis no projeto.
 - **ORIGIN_COUNTRY**: Moeda de conversão final do sistema. Valores disponíveis: `src/infra/enum/country_currency.py`;
 - **FORMAT**: Formato que as datas do projeto devem respeitar. O separador definido em `separator` deve ser o mesmo usado aqui;
 - **SEPARATOR**: Separador utilizado para dar `split()` nas datas;
-- **DATABASE**: Cache usado pelo sistema. Valores disponíveis em: `src/infra/enum/exchange_rate_method.py`;
+- **DATABASE**: (Opcional) Cache usado pelo sistema. Valores disponíveis em: `src/infra/enum/exchange_rate_method.py`;
 - **COMPILATION**: Abas geradas no Excel — `simple` (abas individuais por etapa), `complete` (aba com dados de todas as etapas), `full` (ambas anteriores combinadas);
 
 <h3>database.json</h3>
 
 ```json
 {
-    "ZEN001": {
-        "Nome_Figure": "Saya",
-        "MFC_Link": "https://myfigurecollection.net/item/3054167",
-        "Marca": "Good Smile Company",
-        "Linha": "Nendoroid",
-        "Escala": "Nendoroid",
-
-        "Compra": {
-            "Local_da_Compra": "Zenmarket",
-            "Pais_Local": "Japao",
-            "Data_do_Pagamento": "25/02/2026",
-            "Metodo_Pagamento": "Nubank Credito",
-            "Custos": {
-                "Preco": "6651",
-                "Taxa": "500"
+    "CAIXAS": {
+        "Nome_da_caixa": {
+            "PRODUTOS": ["XXX001"],
+            "FRETE": {
+                "Data_Limite_Pagamento": "DD/MM/YYYY",
+                "Pais_Local": "Pais",
+                "Data_do_Frete": "DD/MM/YYYY",
+                "PAGAMENTO": {
+                    "Metodo_Pagamento": "Metodo de pagamento",
+                    "Preco": "Valor",
+                    "Taxa": "Taxa"
+                }
+            },
+            "IMPOSTO": {
+                "Data_Limite_Pagamento": "DD/MM/YYYY",
+                "Data_do_Imposto": "DD/MM/YYYY",
+                "Preco_Imposto": "Valor"
+            },
+            "ENTREGA": {
+                "Data_da_Entrega": "DD/MM/YYYY"
             }
-        },
+        }
+    },
+    "PRODUTOS": {   
+        "XXX001": {
+            "Nome_Figure": "Nome da figure",
+            "MFC_Link": "https://myfigurecollection.net/item/3054167",
+            "Marca": "Marca da figure",
+            "Linha": "Linha da Figure",
+            "Escala": "Escala da figure",
 
-        "Frete": {
-            "Data_Limite_Pagamento": "09/09/2026",
-            "Pais_Local": "Japao",
-            "Data_do_Frete": "19/08/2026",
-            "Metodo_Pagamento": "Nubank Credito",
-            "Custos": {
-                "Preco": "2553",
-                "Taxa": "0"
+            "COMPRA": {
+                "Local_da_Compra": "Local da compra - Proxy",
+                "Pais_Local": "Pais que o item foi comprado",
+                "PAGAMENTO": {
+                    "Metodo_Pagamento": "Metodo de pagamento",
+                    "Preco": "Valor",
+                    "Taxa": "Taxa"
+                },
+                "Data_do_Pagamento": "DD/MM/YYYY"
             }
-        },
-
-        "Imposto": {
-            "Data_Limite_Pagamento": "09/09/2026",
-            "Data_do_Imposto": "03/09/2026",
-            "Preco_Imposto": "200"
-        },
-
-        "Entrega": {
-            "Data_da_Entrega": "09/09/2026"
         }
     }
 }
@@ -145,6 +154,7 @@ O projeto está dividido em módulos:
 
 - **Product**          → Responsável pela construção dos dados do produto;
 - **Purchase**         → Responsável pela construção dos dados de compra;
+- **Boxing**           → Responsável pela construção dos dados de encomendas;
 - **Shipping**         → Responsável pela construção dos dados do envio;
 - **Tax**              → Responsável pela construção dos dados de taxas;
 - **Delivery**         → Responsável pela construção dos dados de entrega;
