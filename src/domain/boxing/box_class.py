@@ -40,7 +40,7 @@ class BoxBuild:
         if self._box.boxStatus == BoxStatus.AWAITING_BOXING.value:
             return
         elif self._box.boxStatus == BoxStatus.COMPLETED.value:
-            self.validateNonEmptyValues(["boxCode", "boxData", "productFraction"])
+            self.validateNonEmptyValues(["boxCode", "boxData", "productPriceFraction"])
         else:
             raise ValueError("Invalid status error")
 

@@ -21,6 +21,6 @@ class ProductTaxFactory:
                 ProductTaxBuild()
                 .setDateLimit(box_info["IMPOSTO"]["Data_Limite_Pagamento"])
                 .setTaxDate(box_info["IMPOSTO"]["Data_do_Imposto"])
-                .setTaxPrice(box_info["IMPOSTO"]["Preco_Imposto"])
+                .setTaxPrice(box_info["IMPOSTO"]["Preco_Imposto"], box_info["PRODUTOS"])
                 .build()
             )
