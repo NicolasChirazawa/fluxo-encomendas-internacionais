@@ -1,6 +1,6 @@
 from .tax_enum import TaxStatus
 
-from infra.helper.reduce_fraction_price import reduce_fraction_price
+from infra.helper.fraction_product_box_price import fraction_product_box_price
 
 class ProductTax:
     def __init__(self):
@@ -23,8 +23,10 @@ class ProductTaxBuild:
         self._productTax.taxStatus = TaxStatus.COMPLETED
         return self
 
-    def setTaxPrice (self, tax_price):
-        new_tax_price = reduce_fraction_price(tax_price)  
+    def setTaxPrice (self, tax_price, product_list):
+        product_amout = len(product_list)
+        new_tax_price = fraction_product_box_price(tax_price, product_amout)  
+
         self._productTax.taxPrice = new_tax_price
         return self
 

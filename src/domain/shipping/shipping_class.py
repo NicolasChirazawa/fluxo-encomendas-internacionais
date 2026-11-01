@@ -1,7 +1,7 @@
 from infra.exchange_rate.exchange_rate_class import ExchangeRateBuild
 from domain.shipping.shipping_enum import ShippingStatus 
 
-from infra.helper.reduce_fraction_price import reduce_fraction_price
+from infra.helper.fraction_product_box_price import fraction_product_box_price
 
 class ProductShipping:
     def __init__(self):
@@ -33,14 +33,19 @@ class ProductShippingBuild:
         self._productShipping.shippingStatus = ShippingStatus.COMPLETED
         return self
 
-    def setShippingCurrencyPrice(self, shipping_currency_price):
-        new_shipping_currency_price = reduce_fraction_price(shipping_currency_price)
-        self._productShipping.shippingCurrencyPrice = new_shipping_currency_price
+    def setShippingCurrencyPrice(self, shipping_currency_price, product_list):
+        product_amout = len(product_list)
 
+        new_shipping_currency_price = fraction_product_box_price(shipping_currency_price, product_amout)
+
+        self._productShipping.shippingCurrencyPrice = new_shipping_currency_price
         return self
 
-    def setShippingCurrencyServiceTax(self, shipping_currency_service_tax):
-        new_currency_service_tax = reduce_fraction_price(shipping_currency_service_tax)
+    def setShippingCurrencyServiceTax(self, shipping_currency_service_tax, product_list):
+        product_amout = len(product_list)
+
+        new_currency_service_tax = fraction_product_box_price(shipping_currency_service_tax, product_amout)
+
         self._productShipping.shippingCurrencyServiceTax = new_currency_service_tax
         return self
 
