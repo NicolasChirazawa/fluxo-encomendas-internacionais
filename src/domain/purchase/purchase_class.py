@@ -43,13 +43,15 @@ class ProductPurchaseBuild:
         return self
 
     def setPurchaseQuote(self):
-        exchangeRateData = (ExchangeRateBuild()
+        exchangeRateData = (
+            ExchangeRateBuild()
             .setDate(self._productPurchase.purchasePaymentDate)
             .setOriginCurrency()
             .setShippingCurrency(self._productPurchase.purchaseCountry)
             .setExchangeRate()
             .build()
         )
+
         self._productPurchase.purchaseQuote = exchangeRateData.exchangeRate
         return self
 
