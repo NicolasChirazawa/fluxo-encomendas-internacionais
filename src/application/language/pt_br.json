@@ -9,7 +9,7 @@
             "AWAITING_BOXING": "Item fora de caixa",
             "COMPLETED": "Item numa caixa"
         },
-        "SHIPPING": {
+        "SHIP": {
             "NO_DATA": "Sem informações",
             "AWAITING_PAYMENT": "Esperando pagamento",
             "COMPLETED": "Envio pago"
@@ -25,7 +25,7 @@
             "COMPLETED": "Entrega realizada"
         }
     },
-    "SUMMARIZED": {
+    "SUMMARY": {
         "PURCHASING": {
             "NO_DATA_STATUS": "Sem informações de compra",
             "NO_DATA_STATUS_DATA": "Produto sem cadastro na aba de compra",
@@ -36,7 +36,7 @@
             "AWAITING_BOXING_STATUS": "Item não cadastrado em nenhuma caixa",
             "AWAITING_BOXING_STATUS_DATA": "O produto ainda não está presente em nenhuma caixa"
         },
-        "SHIPPING": {
+        "SHIP": {
             "NO_DATA_STATUS": "Sem informações de envio",
             "NO_DATA_STATUS_DATA": "Produto sem cadastro na aba de envio",
             "AWAITING_PAYMENT_STATUS": "Esperando pagamento do envio",
@@ -58,7 +58,7 @@
     },
     "SPREADSHEET": {
         "FILE_NAME": "relatorio",
-        "SUMMARIZED_DATA": {
+        "SUMMARY_DATA": {
             "TAB_NAME": "Informações Base",
             "COLUMNS": [
                 "Código",
@@ -135,7 +135,7 @@
                 "Status da Caixa"
             ]
         },
-        "SHIPPING_DATA": {
+        "SHIP_DATA": {
             "TAB_NAME": "Dados do Frete",
             "COLUMNS": [
                 "Código", 

@@ -2,11 +2,11 @@ from domain.product.helper.identifier import injectIdentifier
 
 class compilationData:
     def __init__(self):
-        self.summarizeData       = {}
+        self.summaryData         = {}
         self.productData         = {}
         self.productPurchaseData = {}
         self.productBoxData      = {}
-        self.productShippingData = {}
+        self.productShipData     = {}
         self.productTaxData      = {}
         self.productDeliveryData = {}
         self.identifyData        = {}
@@ -15,8 +15,8 @@ class compilationDataBuild:
     def __init__(self):
         self._compilationData = compilationData()
 
-    def setSummarizeData(self, summarize_data):
-        self._compilationData.summarizeData = summarize_data
+    def setSummaryData(self, summary_data):
+        self._compilationData.summaryData = summary_data
         return self
 
     def setProductData(self, product_data):
@@ -31,8 +31,8 @@ class compilationDataBuild:
         self._compilationData.productBoxData = product_box_data
         return self
 
-    def setProductShippingData(self, product_shipping_data):
-        self._compilationData.productShippingData = product_shipping_data
+    def setProductShipData(self, product_ship_data):
+        self._compilationData.productShipData = product_ship_data
         return self
 
     def setProductTaxData(self, product_tax_data):
@@ -48,10 +48,10 @@ class compilationDataBuild:
         return self
 
     def createBaseCompilation(self):
-        new_summarize_data  = injectIdentifier(self._compilationData.summarizeData, self._compilationData.identifyData)
+        new_summary_data  = injectIdentifier(self._compilationData.summaryData, self._compilationData.identifyData)
 
         base_compilation = {
-            "product_summarize_data":  new_summarize_data
+            "product_summary_data":  new_summary_data
         }
 
         return base_compilation
@@ -60,7 +60,7 @@ class compilationDataBuild:
         new_product_data          = injectIdentifier(self._compilationData.productData,         self._compilationData.identifyData)
         new_product_purchase_data = injectIdentifier(self._compilationData.productPurchaseData, self._compilationData.identifyData)
         new_product_box_data      = injectIdentifier(self._compilationData.productBoxData,      self._compilationData.identifyData)
-        new_product_shipping_data = injectIdentifier(self._compilationData.productShippingData, self._compilationData.identifyData)
+        new_product_ship_data     = injectIdentifier(self._compilationData.productShipData,     self._compilationData.identifyData)
         new_product_tax_data      = injectIdentifier(self._compilationData.productTaxData,      self._compilationData.identifyData)
         new_product_delivery_data = injectIdentifier(self._compilationData.productDeliveryData, self._compilationData.identifyData)
 
@@ -68,7 +68,7 @@ class compilationDataBuild:
             "product_data":          new_product_data,
             "product_purchase_data": new_product_purchase_data,
             "product_box_data":      new_product_box_data,
-            "product_shipping_data": new_product_shipping_data,
+            "product_ship_data":     new_product_ship_data,
             "product_tax_data":      new_product_tax_data,
             "product_delivery_data": new_product_delivery_data
         }
@@ -82,7 +82,7 @@ class compilationDataBuild:
             new_product_data                          | 
             self._compilationData.productPurchaseData | 
             self._compilationData.productBoxData      | 
-            self._compilationData.productShippingData | 
+            self._compilationData.productShipData     | 
             self._compilationData.productTaxData      |
             self._compilationData.productDeliveryData
         )

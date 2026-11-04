@@ -8,7 +8,7 @@ DATABASE_JSON      = read_database_JSON()
 CONFIGURATION_JSON = read_configuration_JSON()
 
 class ExchangeRateDataFactory:
-    def get (origen_currency, shipping_currency, date_format_exchange_rate):
+    def get (origen_currency, ship_currency, date_format_exchange_rate):
 
         ExchangeRateConfig = CONFIGURATION_JSON.get("DATABASE")
         if ExchangeRateConfig != None:
@@ -16,7 +16,7 @@ class ExchangeRateDataFactory:
 
 
         if ExchangeRateConfig == ExchangeRateMethod.LOCAL.name:
-            return exchange_rate_cache.get(origen_currency, shipping_currency, date_format_exchange_rate)
+            return exchange_rate_cache.get(origen_currency, ship_currency, date_format_exchange_rate)
         
         elif ExchangeRateConfig == ExchangeRateMethod.SQL.name:
             ## It’s necessary to develop a SQL database solution here.
@@ -30,14 +30,14 @@ class ExchangeRateDataFactory:
                 "There is no valid value in 'DATABASE' key on 'configuration.json'"
             )
     
-    def set (origen_currency, shipping_currency, date_format_exchange_rate, exchange_rate_value):
+    def set (origen_currency, ship_currency, date_format_exchange_rate, exchange_rate_value):
 
         ExchangeRateConfig = CONFIGURATION_JSON.get("DATABASE")
         if ExchangeRateConfig != None:
             ExchangeRateConfig = ExchangeRateConfig.upper()
 
         if ExchangeRateConfig == ExchangeRateMethod.LOCAL.name:
-            exchange_rate_cache.set(origen_currency, shipping_currency, date_format_exchange_rate, exchange_rate_value)
+            exchange_rate_cache.set(origen_currency, ship_currency, date_format_exchange_rate, exchange_rate_value)
             return
         
         elif ExchangeRateConfig == ExchangeRateMethod.SQL.name:

@@ -154,11 +154,11 @@ O projeto está dividido em módulos:
 
 - **Product**          → Responsável pela construção dos dados do produto;
 - **Purchase**         → Responsável pela construção dos dados de compra;
-- **Boxing**           → Responsável pela construção dos dados de encomendas;
-- **Shipping**         → Responsável pela construção dos dados do envio;
+- **Box**              → Responsável pela construção dos dados de encomendas;
+- **Ship**             → Responsável pela construção dos dados do envio;
 - **Tax**              → Responsável pela construção dos dados de taxas;
 - **Delivery**         → Responsável pela construção dos dados de entrega;
-- **Summarize**        → Responsável pelo resumo do status da encomenda com base nos dados fornecidos;
+- **Summary**          → Responsável pelo resumo do status da encomenda com base nos dados fornecidos;
 - **Compilation Data** → Responsável pela compilação dos dados gerais em blocos de objetos;
 
 ## Contribuição

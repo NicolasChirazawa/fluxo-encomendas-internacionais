@@ -6,46 +6,46 @@ from infra.spreadsheet.spreadsheet_template import SpreadsheetTemplateBuild
 CONFIGURATION_JSON = read_configuration_JSON()
 LANGUAGE_JSON      = read_language_JSON(CONFIGURATION_JSON["LOCALE"]["LANGUAGE"])
 
-class TabShippingData:
+class TabShipData:
     def __init__(self):
         self.type = ""
         self.tabName = ""
         self.newOrderColumns = [
             "code", 
             "figureName",
-            "shippingDateLimit", 
-            "shippingCountry", 
-            "shippingDate", 
-            "shippingCurrencyPrice", 
-            "shippingCurrencyServiceTax", 
-            "shippingPaymentMethod", 
-            "shippingQuote", 
-            "shippingPrice", 
-            "shippingStatus"
+            "shipDateLimit", 
+            "shipCountry", 
+            "shipDate", 
+            "shipCurrencyPrice", 
+            "shipCurrencyServiceTax", 
+            "shipPaymentMethod", 
+            "shipQuote", 
+            "shipPrice", 
+            "shipStatus"
         ]
         self.dataframe = ""
 
-class TabShippingDataBuilder:
+class TabShipDataBuilder:
     def __init__(self):
-        self._tabShippingData = TabShippingData()
+        self._tabShipData = TabShipData()
 
     def setType (self, type):
-        self._tabShippingData.type = type
+        self._tabShipData.type = type
         return self
 
     def setTabName (self, tabName):
-        self._tabShippingData.tabName = tabName
+        self._tabShipData.tabName = tabName
         return self
 
     def setDataframe (self, data):
-        self._tabShippingData.dataframe = (
+        self._tabShipData.dataframe = (
             SpreadsheetTemplateBuild()
             .setSpreadsheetTemplate(data)
-            .order(self._tabShippingData.newOrderColumns)
-            .rename(LANGUAGE_JSON['SPREADSHEET'][self._tabShippingData.type]["COLUMNS"])
+            .order(self._tabShipData.newOrderColumns)
+            .rename(LANGUAGE_JSON['SPREADSHEET'][self._tabShipData.type]["COLUMNS"])
             .build()
         )
         return self
 
     def build(self):
-        return self._tabShippingData
+        return self._tabShipData

@@ -15,7 +15,7 @@ class ExchangeRate:
     def __init__(self):
         self.date = ""
         self.originCurrency = ""
-        self.shippingCurrency = ""
+        self.shipCurrency = ""
         self.exchangeRate = ""
 
 class ExchangeRateBuild:
@@ -39,15 +39,15 @@ class ExchangeRateBuild:
 
         return self
 
-    def setShippingCurrency(self, country):
+    def setShipCurrency(self, country):
         country = country.upper()
-        self._exchangeRateData.shippingCurrency = Currency[country].value
+        self._exchangeRateData.shipCurrency = Currency[country].value
 
         return self
 
     def setExchangeRate(self):
         origen_currency   = self._exchangeRateData.originCurrency
-        shipping_currency = self._exchangeRateData.shippingCurrency
+        ship_currency = self._exchangeRateData.shipCurrency
 
         date_format_exchange_rate = (
             self._exchangeRateData.date.year + 
@@ -57,17 +57,17 @@ class ExchangeRateBuild:
             self._exchangeRateData.date.day
         )
 
-        exchange_rate_value = ExchangeRateDataFactory.get(origen_currency, shipping_currency, date_format_exchange_rate)
+        exchange_rate_value = ExchangeRateDataFactory.get(origen_currency, ship_currency, date_format_exchange_rate)
 
         if exchange_rate_value == None:
-            exchange_rate_value = self.searchFrankFurterAPI(origen_currency, shipping_currency, date_format_exchange_rate)
-            ExchangeRateDataFactory.set(origen_currency, shipping_currency, date_format_exchange_rate, exchange_rate_value)
+            exchange_rate_value = self.searchFrankFurterAPI(origen_currency, ship_currency, date_format_exchange_rate)
+            ExchangeRateDataFactory.set(origen_currency, ship_currency, date_format_exchange_rate, exchange_rate_value)
 
         self._exchangeRateData.exchangeRate = exchange_rate_value
         return self
 
-    def searchFrankFurterAPI(self, origen_currency, shipping_currency, date_format_exchange_rate):
-        exchangeRateURL = f"https://api.frankfurter.dev/v2/rates?base={shipping_currency}&quotes={origen_currency}&date={date_format_exchange_rate}"
+    def searchFrankFurterAPI(self, origen_currency, ship_currency, date_format_exchange_rate):
+        exchangeRateURL = f"https://api.frankfurter.dev/v2/rates?base={ship_currency}&quotes={origen_currency}&date={date_format_exchange_rate}"
         
         request = Request(
             exchangeRateURL,
