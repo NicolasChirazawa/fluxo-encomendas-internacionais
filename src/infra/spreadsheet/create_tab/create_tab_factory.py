@@ -1,9 +1,9 @@
-from .classes.create_tab_summarized_data import TabSummarizedDataBuild
+from .classes.create_tab_summary_data    import TabSummaryDataBuild
 from .classes.create_tab_full_data_class import TabFullDataBuild
 from .classes.create_tab_product_data    import TabProcuctDataBuilder
 from .classes.create_tab_purchase_data   import TabPurchaseDataBuilder
 from .classes.create_tab_box_data        import TabBoxDataBuilder
-from .classes.create_tab_shipping_data   import TabShippingDataBuilder
+from .classes.create_tab_ship_data       import TabShipDataBuilder
 from .classes.create_tab_tax_data        import TabTaxDataBuilder
 from .classes.create_tab_delivery_data   import TabDeliveryDataBuilder
 
@@ -21,7 +21,7 @@ class Tab(Enum):
     PRODUCT_DATA    = LANGUAGE_JSON["SPREADSHEET"]["PRODUCT_DATA"]["TAB_NAME"]
     PURCHASE_DATA   = LANGUAGE_JSON["SPREADSHEET"]["PURCHASE_DATA"]["TAB_NAME"]
     BOX_DATA        = LANGUAGE_JSON["SPREADSHEET"]["BOX_DATA"]["TAB_NAME"]
-    SHIPPING_DATA   = LANGUAGE_JSON["SPREADSHEET"]["SHIPPING_DATA"]["TAB_NAME"]
+    SHIP_DATA       = LANGUAGE_JSON["SPREADSHEET"]["SHIP_DATA"]["TAB_NAME"]
     TAX_DATA        = LANGUAGE_JSON["SPREADSHEET"]["TAX_DATA"]["TAB_NAME"]
     DELIVERY_DATA   = LANGUAGE_JSON["SPREADSHEET"]["DELIVERY_DATA"]["TAB_NAME"]
 
@@ -36,7 +36,7 @@ class CreateTabFactory:
         tab_data = None
 
         if enum_tab == Tab.SUMMARIZED_DATA:
-            tab_data = TabSummarizedDataBuild()
+            tab_data = TabSummaryDataBuild()
             
         elif enum_tab == Tab.FULL_DATA:
             tab_data = TabFullDataBuild()
@@ -50,8 +50,8 @@ class CreateTabFactory:
         elif enum_tab == Tab.BOX_DATA:
             tab_data = TabBoxDataBuilder()
 
-        elif enum_tab == Tab.SHIPPING_DATA:
-            tab_data = TabShippingDataBuilder()
+        elif enum_tab == Tab.SHIP_DATA:
+            tab_data = TabShipDataBuilder()
 
         elif enum_tab == Tab.TAX_DATA:
             tab_data = TabTaxDataBuilder()

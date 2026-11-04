@@ -4,18 +4,18 @@ from infra.json.read_json import readJSON
 
 ARCHIVE_FILE = os.path.join(os.path.abspath(""), "infra", "exchange_rate", "local", "exchange_rate_cache.json")
 
-def get (origen_currency, shipping_currency, date_format_exchange_rate):
+def get (origen_currency, ship_currency, date_format_exchange_rate):
     JSON_data = readJSON(ARCHIVE_FILE)
 
-    currency_key = shipping_currency + "_" + origen_currency
+    currency_key = ship_currency + "_" + origen_currency
     exchange_rate_cache = JSON_data.get(currency_key, {}).get(date_format_exchange_rate)
 
     return exchange_rate_cache
 
-def set (origen_currency, shipping_currency, date_format_exchange_rate, exchange_rate_value):
+def set (origen_currency, ship_currency, date_format_exchange_rate, exchange_rate_value):
     JSON_data = readJSON(ARCHIVE_FILE)
 
-    currency_key = shipping_currency + "_" + origen_currency
+    currency_key = ship_currency + "_" + origen_currency
 
     if currency_key not in JSON_data:
         JSON_data[currency_key] = {}

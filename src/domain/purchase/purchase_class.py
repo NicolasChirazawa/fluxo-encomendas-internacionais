@@ -47,7 +47,7 @@ class ProductPurchaseBuild:
             ExchangeRateBuild()
             .setDate(self._productPurchase.purchasePaymentDate)
             .setOriginCurrency()
-            .setShippingCurrency(self._productPurchase.purchaseCountry)
+            .setShipCurrency(self._productPurchase.purchaseCountry)
             .setExchangeRate()
             .build()
         )
